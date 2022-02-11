@@ -12,4 +12,6 @@ class CleaningObject(
 	fun removeActivity(activity: Activity) {
 		activityList.remove(activity)
 	}
+
+	override fun toString(): String = "\uD83C\uDFE0 - $address" // 🏠
 }

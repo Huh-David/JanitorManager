@@ -8,25 +8,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import de.davidhuh.janitormanager.domain.CleaningObject
+import de.davidhuh.janitormanager.ui.cards.activityCard
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 
 @Composable
-fun TestScreen(
-//	cleaningObject: CleaningObject,
+fun CleaningObjectScreen(
 	navController: NavController,
 ) {
+	val cleaningObject = navController.cleaningObjectList.get(navController.cleaningObjectIndex)
+
 	Column(
 		modifier = Modifier.fillMaxSize(),
 		verticalArrangement = Arrangement.Center,
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {
-		Text(navController.cleaningObject.toString())
+		Text("[${navController.cleaningObjectIndex}] $cleaningObject")
+		cleaningObject.activityList.forEach { activity ->
+			activityCard(activity)
+		}
 		Button(
 			onClick = {
 				navController.navigate(Screen.HomeScreen.name)
 			}) {
-			Text("Navigate to Notification")
+			Text("Back to Overview")
 		}
 	}
 }

@@ -12,54 +12,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import de.davidhuh.janitormanager.domain.*
+import de.davidhuh.janitormanager.service.generateMockData
 import de.davidhuh.janitormanager.ui.navcontroller.*
 import de.davidhuh.janitormanager.ui.screens.HomeScreen
 import de.davidhuh.janitormanager.ui.screens.Screen
-import de.davidhuh.janitormanager.ui.screens.TestScreen
-import java.time.LocalDate
-import kotlin.random.Random
+import de.davidhuh.janitormanager.ui.screens.CleaningObjectScreen
 
-
-
-@Composable
-fun activityCard(
-	activity: Activity,
-) {
-	OutlinedButton(
-		modifier = Modifier
-			.fillMaxWidth()
-			.padding(horizontal = 10.dp),
-		onClick = { /* Do something! */ }
-	) {
-		Row(
-			modifier = Modifier.fillMaxWidth(),
-			horizontalArrangement = Arrangement.SpaceBetween
-		) {
-			Text("${activity.activityType}")
-			Text("${activity.startDate}")
-		}
-	}
-}
 
 @Composable
 @Preview
 fun App() {
 
+	val cleaningObjectList = generateMockData().sortedBy { it.toString() } as MutableList<CleaningObject>
 	val screens = Screen.values().toList()
-	val navController by rememberNavController(Screen.HomeScreen.name)
+	val navController by rememberNavController(Screen.HomeScreen.name, mutableSetOf(), cleaningObjectList)
 	val currentScreen by remember {
 		navController.currentScreen
 	}
-
-//	val cleaningObjectList = generateMockData()
-//
-//	MaterialTheme {
-//		Column {
-//			cleaningObjectList.forEach { cleaningObject ->
-//				cleaningObjectCard(cleaningObject)
-//			}
-//		}
-//	}
 
 	MaterialTheme {
 		Surface(
@@ -109,8 +78,8 @@ fun CustomNavigationHost(
 		composable(Screen.HomeScreen.name) {
 			HomeScreen(navController)
 		}
-		composable(Screen.TestScreen.name) {
-			TestScreen(navController)
+		composable(Screen.CleaningObjectScreen.name) {
+			CleaningObjectScreen(navController)
 		}
 	}.build()
 }

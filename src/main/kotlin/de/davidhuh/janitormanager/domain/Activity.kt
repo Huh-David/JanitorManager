@@ -8,5 +8,7 @@ data class Activity(
 	val intervalInDays: Int,
 	val activityType: ActivityType,
 ) {
-
+	override fun toString(): String {
+		return "$activityType - $startDate - $intervalInDays"
+	}
 }

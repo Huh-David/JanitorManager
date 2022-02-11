@@ -15,7 +15,7 @@ fun generateMockData(): MutableList<CleaningObject> {
 	val streetNames = mutableListOf<String>("Hauptstr.", "Bahnhofsstr.", "Schulstr.", "Cool street")
 
 	for (i in 1..10) {
-		val activityList = mutableListOf<Activity>()
+		var activityList = mutableListOf<Activity>()
 
 		val preName = preNameList.random()
 		val surName = surNameList.random()
@@ -40,6 +40,8 @@ fun generateMockData(): MutableList<CleaningObject> {
 
 			activityList.add(activity)
 		}
+
+		activityList = activityList.sortedBy { it.toString() } as MutableList<Activity>
 
 		val cleaningObject = CleaningObject(address, cleaningObjectManagement, activityList)
 

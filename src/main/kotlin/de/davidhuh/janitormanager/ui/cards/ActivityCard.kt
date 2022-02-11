@@ -9,32 +9,24 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.CleaningObject
-import de.davidhuh.janitormanager.ui.navcontroller.NavController
-import de.davidhuh.janitormanager.ui.screens.Screen
+import de.davidhuh.janitormanager.domain.Activity
 
 @Composable
-fun cleaningObjectCard(
-	cleaningObjectIndex: Int,
-	navController: NavController,
+fun activityCard(
+	activity: Activity,
 ) {
-	val cleaningObject = navController.cleaningObjectList.get(cleaningObjectIndex)
-
 	OutlinedButton(
 		modifier = Modifier
 			.fillMaxWidth()
-			.padding(horizontal = 10.dp),
-		onClick = {
-			navController.cleaningObjectIndex = cleaningObjectIndex
-			navController.navigate(Screen.CleaningObjectScreen.name)
-		}
+			.padding(start = 80.dp),
+		onClick = { /* Do something! */ }
 	) {
 		Row(
 			modifier = Modifier.fillMaxWidth(),
 			horizontalArrangement = Arrangement.SpaceBetween
 		) {
-			Text("[$cleaningObjectIndex] $cleaningObject")
-			Text("${cleaningObject.activityList.size} Activities")
+			Text("${activity.activityType}")
+			Text("${activity.startDate}")
 		}
 	}
 }

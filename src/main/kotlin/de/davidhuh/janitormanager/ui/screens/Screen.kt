@@ -3,6 +3,7 @@ package de.davidhuh.janitormanager.ui.screens
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
 import androidx.compose.ui.graphics.vector.ImageVector
 
 enum class Screen(
@@ -11,10 +12,10 @@ enum class Screen(
 ) {
 	HomeScreen(
 		label = "Home",
-		icon = Icons.Filled.Home
+		icon = Icons.Filled.List
 	),
-	TestScreen(
-		label = "Test",
-		icon = Icons.Filled.AccountBox
+	CleaningObjectScreen(
+		label = "Cleaning Object",
+		icon = Icons.Filled.Home
 	)
 }

@@ -9,7 +9,8 @@ import de.davidhuh.janitormanager.domain.CleaningObject
 class NavController(
 	private val startDestination: String,
 	private var backStackScreens: MutableSet<String> = mutableSetOf(),
-	var cleaningObject: CleaningObject?,
+	var cleaningObjectIndex: Int,
+	var cleaningObjectList: MutableList<CleaningObject>,
 ) {
 	var currentScreen: MutableState<String> = mutableStateOf(startDestination)
 
@@ -42,6 +43,7 @@ class NavController(
 fun rememberNavController(
 	startDestination: String,
 	backStackScreens: MutableSet<String> = mutableSetOf(),
+	cleaningObjectList: MutableList<CleaningObject>,
 ): MutableState<NavController> = rememberSaveable {
-	mutableStateOf(NavController(startDestination, backStackScreens, null))
+	mutableStateOf(NavController(startDestination, backStackScreens, 0, cleaningObjectList))
 }

@@ -10,17 +10,33 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import de.davidhuh.janitormanager.domain.*
+import java.time.LocalDate
+
+fun generateMockData(): CleaningObject {
+	val address = Address("Str.", "123", "12345", "City")
+	val cleaningObjectManagement = CleaningObjectManagement("David", "Huh", "12345", "mail@davidhuh.de", address)
+	val sector = Sector("Indoor")
+	val activityType = ActivityType("Clean stairs", sector)
+	val startDate = LocalDate.of(2022, 1, 1)
+	val activityOne = Activity(startDate, 7, activityType)
+	val activityList = mutableListOf<Activity>(activityOne)
+	val cleaningObject = CleaningObject(address, cleaningObjectManagement, activityList)
+
+	return cleaningObject
+}
 
 @Composable
 @Preview
 fun App() {
-	var text by remember { mutableStateOf("Hello, World!") }
+	val cleaningObject = generateMockData()
+	var cleaningObjectAddress by remember { mutableStateOf(cleaningObject.address.toString()) }
 
 	MaterialTheme {
 		Button(onClick = {
-			text = "Hello, Desktop!"
+			cleaningObjectAddress = "Copied Address!"
 		}) {
-			Text(text)
+			Text(cleaningObjectAddress)
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package de.davidhuh.janitormanager.domain
 
+import de.davidhuh.janitormanager.repository.createTodoList
 import java.time.LocalDate
 
 
@@ -11,4 +12,6 @@ data class Activity(
 	override fun toString(): String {
 		return "$activityType - $startDate - $intervalInDays"
 	}
+
+	val todoList = createTodoList(this)
 }

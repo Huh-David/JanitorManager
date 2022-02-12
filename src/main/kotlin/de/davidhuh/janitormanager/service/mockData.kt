@@ -28,9 +28,9 @@ fun generateMockData(): MutableList<CleaningObject> {
 				Random.nextInt(10000, 99999).toString(),
 				cityNames.random())
 		val cleaningObjectManagement = CleaningObjectManagement(preName, surName, phone, email, address)
-		val startDate = LocalDate.of(Random.nextInt(2020, 2022), Random.nextInt(1, 12), Random.nextInt(1, 28))
 
 		for (j in 1..Random.nextInt(1, 10)) {
+			val startDate = LocalDate.of(Random.nextInt(2020, 2022), Random.nextInt(1, 12), Random.nextInt(1, 28))
 			val sectorName = sectorNames.random()
 			val activityTypeName = activityTypeNames.random()
 

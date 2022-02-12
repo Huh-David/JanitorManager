@@ -1,5 +1,6 @@
 package de.davidhuh.janitormanager.domain
 
+
 class CleaningObject(
 	var address: Address,
 	var cleaningObjectManagement: CleaningObjectManagement,

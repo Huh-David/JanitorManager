@@ -10,10 +10,12 @@ fun createTodoList(activity: Activity): MutableList<Todo> {
 	val todoList = mutableListOf<Todo>()
 
 	while (todoDay < today) {
-		val todo = Todo(activity, todoDay)
+		val todo = Todo(activity, todoDay, overdue = true)
 		todoList.add(todo)
 		todoDay = todoDay.plusDays(activity.intervalInDays.toLong())
 	}
+
+	todoList.last().overdue = false
 
 	return todoList
 }

@@ -6,13 +6,15 @@ data class Todo(
 	val activity: Activity,
 	val date: LocalDate,
 	var done: Boolean = false,
+	var overdue: Boolean = false,
 ) {
 	fun changeStatus() {
 		this.done != this.done
 	}
 
 	override fun toString(): String {
-		var done = if (this.done) "✅" else "❌"
-		return "${this.date} $done"
+		val doneText = if (this.done) "✅" else "❌"
+		val overdueText = if (this.overdue) "⌛" else "⏳"
+		return "${this.date} $overdueText $doneText"
 	}
 }

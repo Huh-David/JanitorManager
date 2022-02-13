@@ -19,7 +19,7 @@ import de.davidhuh.janitormanager.domain.Todo
 fun activityCard(
 	activity: Activity,
 ) {
-	var firstTodo: Todo
+	val firstTodo: Todo
 	if (activity.todoList.filter { !it.done }.isEmpty()) {
 		firstTodo = remember { activity.todoList.last() }
 	} else {

@@ -1,6 +1,8 @@
-package de.davidhuh.janitormanager.ui.cards
+package de.davidhuh.janitormanager.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.Divider
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -10,10 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.Activity
 import de.davidhuh.janitormanager.domain.Todo
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
-import de.davidhuh.janitormanager.ui.screens.Screen
 
 @Composable
 fun todoOverviewRow(
@@ -27,7 +27,7 @@ fun todoOverviewRow(
 		OutlinedButton(
 			modifier = Modifier
 				.weight(3f)
-				.padding(start = 4.dp)
+				.padding(start = 3.dp)
 				.wrapContentWidth(Alignment.Start),
 			onClick = onClick1
 		) {
@@ -49,30 +49,34 @@ fun todoOverviewRow(
 }
 
 @Composable
-fun activityCard(
-	activity: Activity,
-	index: Int,
+fun allTodosScreen(
 	navController: NavController,
 ) {
-	val firstTodo: Todo = if (activity.todoList.none { !it.done }) {
-		remember { activity.todoList.last() }
-	} else {
-		remember { activity.todoList.first { !it.done } }
+	Column(modifier = Modifier.padding(start = 80.dp)) {
+		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
+			cleaningObject.activityList.forEach { activity ->
+				val todo: Todo
+				if (activity.todoList.none() { !it.done }) {
+					todo = activity.todoList.last()
+				} else {
+					todo = activity.todoList.first() { !it.done }
+				}
+				val text = "$cleaningObject ${activity.activityType}"
+				val todoText: MutableState<String> = remember { mutableStateOf("$todo") }
+
+				todoOverviewRow(
+					text1 = text,
+					text2 = todoText.value,
+					onClick1 = {
+						navController.cleaningObjectIndex = index
+						navController.navigate(Screen.CleaningObjectScreen.name)
+					},
+					onClick2 = {
+						todo.changeStatus()
+						todoText.value = "$todo"
+					},
+				)
+			}
+		}
 	}
-
-	val text: MutableState<String> = remember { mutableStateOf("$firstTodo") }
-
-	todoOverviewRow(
-		"${activity.activityType} ${text.value}",
-		onClick1 = {
-			firstTodo.changeStatus()
-			text.value = "$firstTodo"
-		},
-		"Todo Overview",
-		onClick2 = {
-			navController.activityIndex = index
-			navController.navigate(Screen.TodoOverviewScreen.name)
-		},
-		modifier = Modifier.padding(start = 80.dp)
-	)
 }

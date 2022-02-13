@@ -8,11 +8,19 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.ui.cards.activityCard
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 
 @Composable
-fun CleaningObjectScreen(
+fun generateActivityList(cleaningObject: CleaningObject, navController: NavController) {
+	return cleaningObject.activityList.forEachIndexed { index, activity ->
+		activityCard(activity, index, navController)
+	}
+}
+
+@Composable
+fun cleaningObjectScreen(
 	navController: NavController,
 ) {
 	val cleaningObject = navController.cleaningObjectList.get(navController.cleaningObjectIndex)
@@ -23,8 +31,13 @@ fun CleaningObjectScreen(
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {
 		Text("[${navController.cleaningObjectIndex}] $cleaningObject")
-		cleaningObject.activityList.forEach { activity ->
-			activityCard(activity)
+		generateActivityList(cleaningObject, navController)
+		Button(
+			onClick = {
+				// TODO implementation
+			}
+		) {
+			Text("Update Overview")
 		}
 		Button(
 			onClick = {

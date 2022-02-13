@@ -9,7 +9,7 @@ data class Todo(
 	var overdue: Boolean = false,
 ) {
 	fun changeStatus() {
-		this.done != this.done
+		this.done = !this.done
 	}
 
 	override fun toString(): String {

@@ -11,6 +11,7 @@ class NavController(
 	private var backStackScreens: MutableSet<String> = mutableSetOf(),
 	var cleaningObjectIndex: Int,
 	var cleaningObjectList: MutableList<CleaningObject>,
+	var activityIndex: Int,
 ) {
 	var currentScreen: MutableState<String> = mutableStateOf(startDestination)
 
@@ -44,6 +45,7 @@ fun rememberNavController(
 	startDestination: String,
 	backStackScreens: MutableSet<String> = mutableSetOf(),
 	cleaningObjectList: MutableList<CleaningObject>,
+
 ): MutableState<NavController> = rememberSaveable {
-	mutableStateOf(NavController(startDestination, backStackScreens, 0, cleaningObjectList))
+	mutableStateOf(NavController(startDestination, backStackScreens, 0, cleaningObjectList, 0))
 }

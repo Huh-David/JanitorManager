@@ -8,15 +8,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import de.davidhuh.janitormanager.domain.*
 import de.davidhuh.janitormanager.service.generateMockData
 import de.davidhuh.janitormanager.ui.navcontroller.*
-import de.davidhuh.janitormanager.ui.screens.HomeScreen
-import de.davidhuh.janitormanager.ui.screens.Screen
-import de.davidhuh.janitormanager.ui.screens.CleaningObjectScreen
+import de.davidhuh.janitormanager.ui.screens.*
 
 
 @Composable
@@ -63,7 +60,7 @@ fun App() {
 				Box(
 					modifier = Modifier.fillMaxHeight()
 				) {
-					CustomNavigationHost(navController = navController)
+					customNavigationHost(navController = navController)
 				}
 			}
 		}
@@ -71,15 +68,21 @@ fun App() {
 }
 
 @Composable
-fun CustomNavigationHost(
+fun customNavigationHost(
 	navController: NavController,
 ) {
 	NavigationHost(navController) {
 		composable(Screen.HomeScreen.name) {
-			HomeScreen(navController)
+			homeScreen(navController)
 		}
 		composable(Screen.CleaningObjectScreen.name) {
-			CleaningObjectScreen(navController)
+			cleaningObjectScreen(navController)
+		}
+		composable(Screen.TodoOverviewScreen.name) {
+			todoOverviewScreen(navController)
+		}
+		composable(Screen.AllTodosScreen.name) {
+			allTodosScreen(navController)
 		}
 	}.build()
 }

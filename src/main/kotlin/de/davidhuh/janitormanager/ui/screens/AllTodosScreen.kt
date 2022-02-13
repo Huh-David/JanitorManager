@@ -55,11 +55,10 @@ fun allTodosScreen(
 	Column(modifier = Modifier.padding(start = 80.dp)) {
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
 			cleaningObject.activityList.forEach { activity ->
-				val todo: Todo
-				if (activity.todoList.none() { !it.done }) {
-					todo = activity.todoList.last()
+				val todo: Todo = if (activity.todoList.none() { !it.done }) {
+					remember { activity.todoList.last() }
 				} else {
-					todo = activity.todoList.first() { !it.done }
+					remember { activity.todoList.first() { !it.done } }
 				}
 				val text = "$cleaningObject ${activity.activityType}"
 				val todoText: MutableState<String> = remember { mutableStateOf("$todo") }

@@ -56,8 +56,10 @@ fun activityCard(
 ) {
 	val firstTodo: Todo = if (activity.todoList.none { !it.done }) {
 		remember { activity.todoList.last() }
+//		activity.todoList.last()
 	} else {
 		remember { activity.todoList.first { !it.done } }
+//		activity.todoList.first { !it.done }
 	}
 
 	val text: MutableState<String> = remember { mutableStateOf("$firstTodo") }

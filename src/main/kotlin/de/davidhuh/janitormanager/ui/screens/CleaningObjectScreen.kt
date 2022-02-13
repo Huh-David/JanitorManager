@@ -23,7 +23,7 @@ fun generateActivityList(cleaningObject: CleaningObject, navController: NavContr
 fun cleaningObjectScreen(
 	navController: NavController,
 ) {
-	val cleaningObject = navController.cleaningObjectList.get(navController.cleaningObjectIndex)
+	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
 
 	Column(
 		modifier = Modifier.fillMaxSize(),

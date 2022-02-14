@@ -18,7 +18,7 @@ fun cleaningObjectCard(
 	cleaningObjectIndex: Int,
 	navController: NavController,
 ) {
-	val cleaningObject = navController.cleaningObjectList.get(cleaningObjectIndex)
+	val cleaningObject = navController.cleaningObjectList[cleaningObjectIndex]
 
 	OutlinedButton(
 		modifier = Modifier

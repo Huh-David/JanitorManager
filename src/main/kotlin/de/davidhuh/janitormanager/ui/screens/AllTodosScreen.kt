@@ -94,13 +94,9 @@ fun allTodosScreen(
 
 
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
-			for (activity in cleaningObject.activityList) {
-				val todo: Todo = if (activity.todoList.none() { !it.done }) {
-					continue
-				} else {
-					activity.todoList.first() { !it.done }
-				}
-				val text = "$cleaningObject ${activity.activityType}"
+			for (activityRepo in cleaningObject.activityRepoList) {
+				val todo: Todo = activityRepo.getFirstTodo()
+				val text = "$cleaningObject ${activityRepo.activityType}"
 				val todoText: MutableState<String> = remember { mutableStateOf("$todo") }
 
 				todoOverviewRow(
@@ -113,15 +109,45 @@ fun allTodosScreen(
 					onClick2 = {
 						todo.changeStatus()
 
-						if (activity.todoList.none() { !it.done }) {
+						if (activityRepo.getAllTodos().none() { !it.done }) {
 							todoText.value = "Everything Done"
 						} else {
-							todoText.value = "${activity.todoList.first() { !it.done }}"
+							todoText.value = "${activityRepo.getFirstTodo()}"
 						}
 
 					},
 				)
 			}
 		}
+//		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
+//			for (activity in cleaningObject.activityList) {
+//				val todo: Todo = if (activity.todoList.none() { !it.done }) {
+//					continue
+//				} else {
+//					activity.todoList.first() { !it.done }
+//				}
+//				val text = "$cleaningObject ${activity.activityType}"
+//				val todoText: MutableState<String> = remember { mutableStateOf("$todo") }
+//
+//				todoOverviewRow(
+//					text1 = text,
+//					text2 = todoText.value,
+//					onClick1 = {
+//						navController.cleaningObjectIndex = index
+//						navController.navigate(Screen.CleaningObjectScreen.name)
+//					},
+//					onClick2 = {
+//						todo.changeStatus()
+//
+//						if (activity.todoList.none() { !it.done }) {
+//							todoText.value = "Everything Done"
+//						} else {
+//							todoText.value = "${activity.todoList.first() { !it.done }}"
+//						}
+//
+//					},
+//				)
+//			}
+//		}
 	}
 }

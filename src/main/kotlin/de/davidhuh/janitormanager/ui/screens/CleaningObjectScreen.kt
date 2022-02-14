@@ -9,13 +9,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import de.davidhuh.janitormanager.domain.CleaningObject
-import de.davidhuh.janitormanager.ui.cards.activityCard
+import de.davidhuh.janitormanager.ui.cards.activityRepoCard
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 
 @Composable
 fun generateActivityList(cleaningObject: CleaningObject, navController: NavController) {
-	return cleaningObject.activityList.forEachIndexed { index, activity ->
-		activityCard(activity, index, navController)
+	return cleaningObject.activityRepoList.forEachIndexed { index, activityRepo ->
+		activityRepoCard(activityRepo, index, navController)
+//		activityRepo.activityList.forEach { activity ->
+//			activityCard(activity, index, navController)
+//		}
 	}
 }
 

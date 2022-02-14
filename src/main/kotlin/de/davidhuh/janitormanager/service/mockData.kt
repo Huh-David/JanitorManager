@@ -1,6 +1,7 @@
 package de.davidhuh.janitormanager.service
 
 import de.davidhuh.janitormanager.domain.*
+import de.davidhuh.janitormanager.repository.ActivityRepo
 import java.time.LocalDate
 import kotlin.random.Random
 
@@ -10,16 +11,19 @@ fun generateMockData(): MutableList<CleaningObject> {
 	val preNameList = mutableListOf<String>("Nico", "Patrick", "Lisa", "OtherCoolDudesPreNames", "David")
 	val surNameList = mutableListOf<String>("Holzi", "Mueller", "Klitschko", "OtherCoolDudesSurNames", "Huh")
 	val activityTypeNames = mutableListOf<String>("Clean stairs", "Cut the lawn", "Bring out garbage")
-	val sectorNames = mutableListOf<String>("Indoor", "Outdoor")
-	val cityNames = mutableListOf<String>("Karlsruhe", "Bühl", "Sinsheim", "Stuttgart", "Offenburg")
+	val sectorNames = mutableListOf<String>("Indoor")//, "Outdoor", "Somewhere")
+	val cityNames = mutableListOf<String>("Karlsruhe", "Bühl", "Sinsheim", "Sinzheim", "Stuttgart", "Offenburg")
 	val streetNames = mutableListOf<String>("Hauptstr.", "Bahnhofsstr.", "Schulstr.", "Cool street")
 
 	for (i in 1..10) {
 		var activityList = mutableListOf<Activity>()
+		val activityRepoList = mutableListOf<ActivityRepo>()
 
 		val preName = preNameList.random()
 		val surName = surNameList.random()
-		val email = "mail@$preName$surName.de"
+		val email = mutableListOf<String>("mail@$preName$surName.de",
+			"$preName.$surName@notgmail.de",
+			"$preName.$surName@dataseller.de").random()
 		val phone = Random.nextInt(100000, 999999).toString()
 
 		val address =
@@ -38,12 +42,23 @@ fun generateMockData(): MutableList<CleaningObject> {
 			val activityType = ActivityType(activityTypeName, sector)
 			val activity = Activity(startDate, Random.nextInt(1, 365), activityType)
 
+			var added = false
+			for (activityRepo in activityRepoList) {
+				if (activityRepo.addActivity(activity)) {
+					added = true
+				}
+			}
+			if (!added) {
+				val activityRepo = ActivityRepo(activityType, mutableListOf(activity))
+				activityRepoList.add(activityRepo)
+			}
+
 			activityList.add(activity)
 		}
 
 		activityList = activityList.sortedBy { it.toString() } as MutableList<Activity>
 
-		val cleaningObject = CleaningObject(address, cleaningObjectManagement, activityList)
+		val cleaningObject = CleaningObject(address, cleaningObjectManagement, activityList, activityRepoList)
 
 		cleaningObjectList.add(cleaningObject)
 	}

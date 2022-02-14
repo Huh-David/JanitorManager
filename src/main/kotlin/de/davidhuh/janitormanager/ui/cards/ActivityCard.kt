@@ -12,14 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.Activity
 import de.davidhuh.janitormanager.domain.Todo
+import de.davidhuh.janitormanager.repository.ActivityRepo
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 import de.davidhuh.janitormanager.ui.screens.Screen
 
 @Composable
 fun todoOverviewRow(
 	text1: String,
-	onClick1: () -> Unit,
 	text2: String,
+	onClick1: () -> Unit,
+	text3: String,
 	onClick2: () -> Unit,
 	modifier: Modifier = Modifier,
 ) {
@@ -31,8 +33,19 @@ fun todoOverviewRow(
 				.wrapContentWidth(Alignment.Start),
 			onClick = onClick1
 		) {
-			Row {
+			Row(
+				modifier = Modifier
+					.wrapContentWidth(Alignment.Start)
+					.weight(5f)
+			) {
 				Text(text1)
+			}
+			Row(
+				modifier = Modifier
+					.wrapContentWidth(Alignment.End)
+					.weight(2f)
+			) {
+				Text(text2)
 			}
 		}
 
@@ -43,32 +56,57 @@ fun todoOverviewRow(
 				.wrapContentWidth(Alignment.End),
 			onClick = onClick2
 		) {
-			Row { Text(text2) }
+			Row { Text(text3) }
 		}
 	}
 }
 
+//@Composable
+//fun activityCard(
+//	activity: Activity,
+//	index: Int,
+//	navController: NavController,
+//) {
+//	val firstTodo: Todo = if (activity.todoList.none { !it.done }) {
+//		remember { activity.todoList.last() }
+////		activity.todoList.last()
+//	} else {
+//		remember { activity.todoList.first { !it.done } }
+////		activity.todoList.first { !it.done }
+//	}
+//
+//	val text: MutableState<String> = remember { mutableStateOf("$firstTodo") }
+//
+//	todoOverviewRow(
+//		"${activity.activityType}",
+//		text2 = text.value,
+//		onClick1 = {
+//			firstTodo.changeStatus()
+//			text.value = "$firstTodo"
+//		},
+//		"Todo Overview",
+//		onClick2 = {
+//			navController.activityIndex = index
+//			navController.navigate(Screen.TodoOverviewScreen.name)
+//		},
+//		modifier = Modifier.padding(start = 80.dp)
+//	)
+//}
 @Composable
-fun activityCard(
-	activity: Activity,
+fun activityRepoCard(
+	activityRepo: ActivityRepo,
 	index: Int,
 	navController: NavController,
 ) {
-	val firstTodo: Todo = if (activity.todoList.none { !it.done }) {
-		remember { activity.todoList.last() }
-//		activity.todoList.last()
-	} else {
-		remember { activity.todoList.first { !it.done } }
-//		activity.todoList.first { !it.done }
-	}
-
-	val text: MutableState<String> = remember { mutableStateOf("$firstTodo") }
+	val firstTodo: Todo = remember { activityRepo.getFirstTodo() }
+	val todoText: MutableState<String> = remember { mutableStateOf("$firstTodo") }
 
 	todoOverviewRow(
-		"${activity.activityType} ${text.value}",
+		"${activityRepo.activityType}",
+		text2 = todoText.value,
 		onClick1 = {
 			firstTodo.changeStatus()
-			text.value = "$firstTodo"
+			todoText.value = "$firstTodo"
 		},
 		"Todo Overview",
 		onClick2 = {

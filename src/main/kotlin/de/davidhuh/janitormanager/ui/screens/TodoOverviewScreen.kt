@@ -19,7 +19,7 @@ fun todoOverviewScreen(
 ) {
 
 	Column(modifier = Modifier.padding(start = 80.dp)) {
-		navController.cleaningObjectList[navController.cleaningObjectIndex].activityList[navController.activityIndex].todoList.forEachIndexed { _, todo ->
+		navController.cleaningObjectList[navController.cleaningObjectIndex].activityRepoList[navController.activityIndex].getAllTodos().forEachIndexed { _, todo ->
 
 			val text: MutableState<String> = remember { mutableStateOf("$todo") }
 

@@ -1,13 +1,16 @@
 package de.davidhuh.janitormanager.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.VerticalScrollbar
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.rememberScrollbarAdapter
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.ui.cards.activityRepoCard
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
@@ -26,10 +29,21 @@ fun generateActivityList(cleaningObject: CleaningObject, navController: NavContr
 fun cleaningObjectScreen(
 	navController: NavController,
 ) {
+	val stateVertical = rememberScrollState(0)
+
+	VerticalScrollbar(
+		modifier = Modifier
+			.fillMaxHeight(),
+		adapter = rememberScrollbarAdapter(stateVertical),
+	)
+
 	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
 
 	Column(
-		modifier = Modifier.fillMaxSize(),
+		modifier = Modifier
+			.padding(start = 80.dp) // This line is important
+			.fillMaxSize()
+			.verticalScroll(stateVertical),
 		verticalArrangement = Arrangement.Center,
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {

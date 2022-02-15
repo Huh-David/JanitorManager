@@ -6,16 +6,14 @@ import de.davidhuh.janitormanager.repository.ActivityRepo
 class CleaningObject(
 	var address: Address,
 	var cleaningObjectManagement: CleaningObjectManagement,
-	var activityList: MutableList<Activity>,
-	var activityRepoList: MutableList<ActivityRepo>
+	var activityRepoList: MutableList<ActivityRepo>,
+	var cleaningObjectType: CleaningObjectType = CleaningObjectType.HOUSE,
 ) {
-	fun addActivity(activity: Activity) {
-		activityList.add(activity)
+	override fun toString(): String = if (cleaningObjectType == CleaningObjectType.APPARTMENT) {
+		"\uD83D\uDECB - $address" // 🛋️
+	} else if (cleaningObjectType == CleaningObjectType.HOUSE) {
+		"\uD83C\uDFD8 - $address" // 🏘️
+	} else {
+		"$address"
 	}
-
-	fun removeActivity(activity: Activity) {
-		activityList.remove(activity)
-	}
-
-	override fun toString(): String = "\uD83C\uDFE0 - $address" // 🏠
 }

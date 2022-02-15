@@ -34,7 +34,7 @@ fun cleaningObjectCard(
 			horizontalArrangement = Arrangement.SpaceBetween
 		) {
 			Text("[$cleaningObjectIndex] $cleaningObject")
-			Text("${cleaningObject.activityList.size} Activities")
+			Text("${cleaningObject.activityRepoList.size} Activities")
 		}
 	}
 }

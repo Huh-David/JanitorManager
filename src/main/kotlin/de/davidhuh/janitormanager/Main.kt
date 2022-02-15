@@ -19,7 +19,6 @@ import de.davidhuh.janitormanager.ui.screens.*
 @Composable
 @Preview
 fun App() {
-
 	val cleaningObjectList = generateMockData().sortedBy { it.toString() } as MutableList<CleaningObject>
 	val screens = Screen.values().toList()
 	val navController by rememberNavController(Screen.HomeScreen.name, mutableSetOf(), cleaningObjectList)

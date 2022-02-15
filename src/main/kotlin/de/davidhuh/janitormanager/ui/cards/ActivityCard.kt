@@ -61,37 +61,6 @@ fun todoOverviewRow(
 	}
 }
 
-//@Composable
-//fun activityCard(
-//	activity: Activity,
-//	index: Int,
-//	navController: NavController,
-//) {
-//	val firstTodo: Todo = if (activity.todoList.none { !it.done }) {
-//		remember { activity.todoList.last() }
-////		activity.todoList.last()
-//	} else {
-//		remember { activity.todoList.first { !it.done } }
-////		activity.todoList.first { !it.done }
-//	}
-//
-//	val text: MutableState<String> = remember { mutableStateOf("$firstTodo") }
-//
-//	todoOverviewRow(
-//		"${activity.activityType}",
-//		text2 = text.value,
-//		onClick1 = {
-//			firstTodo.changeStatus()
-//			text.value = "$firstTodo"
-//		},
-//		"Todo Overview",
-//		onClick2 = {
-//			navController.activityIndex = index
-//			navController.navigate(Screen.TodoOverviewScreen.name)
-//		},
-//		modifier = Modifier.padding(start = 80.dp)
-//	)
-//}
 @Composable
 fun activityRepoCard(
 	activityRepo: ActivityRepo,
@@ -113,6 +82,5 @@ fun activityRepoCard(
 			navController.activityIndex = index
 			navController.navigate(Screen.TodoOverviewScreen.name)
 		},
-		modifier = Modifier.padding(start = 80.dp)
 	)
 }

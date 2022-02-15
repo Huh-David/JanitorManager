@@ -24,7 +24,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -39,12 +38,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
+import de.davidhuh.janitormanager.domain.CleaningObject
+import java.time.LocalDate
 
 @Composable
 fun todoOverviewRow(
 	text1: String,
 	onClick1: () -> Unit,
 	text2: String,
+	text3: String,
 	onClick2: () -> Unit,
 	modifier: Modifier = Modifier,
 ) {
@@ -57,7 +59,18 @@ fun todoOverviewRow(
 			onClick = onClick1
 		) {
 			Row {
-				Text(text1)
+				Text(
+					text = text1,
+					modifier = Modifier
+						.weight(3f)
+						.wrapContentWidth(Alignment.Start)
+				)
+				Text(
+					text = text2,
+					modifier = Modifier
+						.weight(2f)
+						.wrapContentWidth(Alignment.End)
+				)
 			}
 		}
 
@@ -68,7 +81,7 @@ fun todoOverviewRow(
 				.wrapContentWidth(Alignment.End),
 			onClick = onClick2
 		) {
-			Row { Text(text2) }
+			Row { Text(text3) }
 		}
 	}
 }
@@ -79,75 +92,52 @@ fun allTodosScreen(
 ) {
 	val stateVertical = rememberScrollState(0)
 
-
 	VerticalScrollbar(
 		modifier = Modifier
 			.fillMaxHeight(),
-		adapter = rememberScrollbarAdapter(stateVertical)
+		adapter = rememberScrollbarAdapter(stateVertical),
 	)
 
 	Column(
 		modifier = Modifier
 			.padding(start = 80.dp)
-			.verticalScroll(stateVertical)
+			.verticalScroll(stateVertical),
+		verticalArrangement = Arrangement.Center,
+		horizontalAlignment = Alignment.CenterHorizontally
 	) {
-
+		Text("All remaining Todos")
+		val todoIndexMap = remember { mutableMapOf<Todo, Pair<CleaningObject, Int>>() }
 
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
 			for (activityRepo in cleaningObject.activityRepoList) {
-				val todo: Todo = activityRepo.getFirstTodo()
-				val text = "$cleaningObject ${activityRepo.activityType}"
-				val todoText: MutableState<String> = remember { mutableStateOf("$todo") }
-
-				todoOverviewRow(
-					text1 = text,
-					text2 = todoText.value,
-					onClick1 = {
-						navController.cleaningObjectIndex = index
-						navController.navigate(Screen.CleaningObjectScreen.name)
-					},
-					onClick2 = {
-						todo.changeStatus()
-
-						if (activityRepo.getAllTodos().none() { !it.done }) {
-							todoText.value = "Everything Done"
-						} else {
-							todoText.value = "${activityRepo.getFirstTodo()}"
-						}
-
-					},
-				)
+				activityRepo.getAllTodos().forEach() { todo ->
+					if (!todo.done) {
+						todoIndexMap[todo] = Pair(cleaningObject, index)
+					}
+				}
 			}
 		}
-//		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
-//			for (activity in cleaningObject.activityList) {
-//				val todo: Todo = if (activity.todoList.none() { !it.done }) {
-//					continue
-//				} else {
-//					activity.todoList.first() { !it.done }
-//				}
-//				val text = "$cleaningObject ${activity.activityType}"
-//				val todoText: MutableState<String> = remember { mutableStateOf("$todo") }
-//
-//				todoOverviewRow(
-//					text1 = text,
-//					text2 = todoText.value,
-//					onClick1 = {
-//						navController.cleaningObjectIndex = index
-//						navController.navigate(Screen.CleaningObjectScreen.name)
-//					},
-//					onClick2 = {
-//						todo.changeStatus()
-//
-//						if (activity.todoList.none() { !it.done }) {
-//							todoText.value = "Everything Done"
-//						} else {
-//							todoText.value = "${activity.todoList.first() { !it.done }}"
-//						}
-//
-//					},
-//				)
-//			}
-//		}
+		val sortedTodoIndexMap = todoIndexMap.toSortedMap(compareBy<Todo> { it.date }.thenBy { it.activity.toString() })
+
+		sortedTodoIndexMap.forEach() { (todo, cleaningObjectIndexPair) ->
+			val cleaningObjectText: MutableState<String> =
+				remember { mutableStateOf("${cleaningObjectIndexPair.first}") }
+			val activityText: MutableState<String> = remember { mutableStateOf("${todo.activity.activityType}") }
+			val todoText: MutableState<String> = remember { mutableStateOf("$todo") }
+
+			todoOverviewRow(
+				text1 = cleaningObjectText.value,
+				text2 = activityText.value,
+				text3 = todoText.value,
+				onClick1 = {
+					navController.cleaningObjectIndex = cleaningObjectIndexPair.second
+					navController.navigate(Screen.CleaningObjectScreen.name)
+				},
+				onClick2 = {
+					todo.changeStatus() // TODO fix me please
+					todoText.value = "$todo"
+				},
+			)
+		}
 	}
 }

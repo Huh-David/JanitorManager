@@ -1,7 +1,12 @@
 package de.davidhuh.janitormanager.domain
 
-data class Sector(
-	val name: String,
-) {
-	override fun toString(): String = "$name"
+enum class Sector() {
+	INDOOR {},
+	OUTDOOR {},
+	SOMEWHERE {};
+
+	override fun toString(): String {
+		// TODO change from Uppercase to normalized string
+		return super.toString()
+	}
 }

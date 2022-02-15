@@ -5,58 +5,89 @@ import de.davidhuh.janitormanager.repository.ActivityRepo
 import java.time.LocalDate
 import kotlin.random.Random
 
-fun generateMockData(): MutableList<CleaningObject> {
-	val cleaningObjectList = mutableListOf<CleaningObject>()
-
-	val preNameList = mutableListOf<String>("Nico", "Patrick", "Lisa", "Prename", "David")
-	val surNameList = mutableListOf<String>("Holzi", "Mueller", "Klitschko", "Surname", "Huh")
-	val activityTypeNames = mutableListOf<String>("Clean stairs", "Cut the lawn", "Bring out garbage")
-	val sectorNames = mutableListOf<String>("Indoor", "Outdoor", "Somewhere")
+fun generateAddress(): Address {
 	val cityNames = mutableListOf<String>("Karlsruhe", "Bühl", "Sinsheim", "Sinzheim", "Stuttgart", "Offenburg")
 	val streetNames = mutableListOf<String>("Hauptstr.", "Bahnhofsstr.", "Schulstr.", "Cool street")
 
-	for (i in 1..10) {
-		val activityRepoList = mutableListOf<ActivityRepo>()
-		val cleaningObjectType = CleaningObjectType.values().random()
+	return Address(streetNames.random(),
+		Random.nextInt(1, 100).toString(),
+		Random.nextInt(10000, 99999).toString(),
+		cityNames.random())
+}
 
-		val preName = preNameList.random()
-		val surName = surNameList.random()
-		val email = mutableListOf<String>("mail@$preName$surName.de",
-			"$preName.$surName@notgmail.de",
-			"$preName.$surName@dataseller.de").random()
-		val phone = Random.nextInt(100000, 999999).toString()
+fun generateName(): Pair<String, String> {
+	val preNameList = mutableListOf<String>("Nico", "Patrick", "Lisa", "Prename", "David")
+	val surNameList = mutableListOf<String>("Holzi", "Mueller", "Klitschko", "Surname", "Huh")
 
-		val address = Address(streetNames.random(),
-			Random.nextInt(1, 100).toString(),
-			Random.nextInt(10000, 99999).toString(),
-			cityNames.random())
-		val cleaningObjectManagement = CleaningObjectManagement(preName, surName, phone, email, address)
+	val preName = preNameList.random()
+	val surName = surNameList.random()
 
-		for (j in 1..Random.nextInt(1, 10)) {
-			val startDate = LocalDate.of(Random.nextInt(2021, 2022), Random.nextInt(7, 12), Random.nextInt(1, 28))
-			val sectorName = sectorNames.random()
-			val activityTypeName = activityTypeNames.random()
+	return Pair(preName, surName)
+}
 
-			val sector = Sector(sectorName)
-			val activityType = ActivityType(activityTypeName, sector)
-			val activity = Activity(startDate, Random.nextInt(1, 365), activityType)
+fun generateCleaningObjectManagement(): CleaningObjectManagement {
+	val name = generateName()
+	val preName = name.first
+	val surName = name.second
 
-			var added = false
-			for (activityRepo in activityRepoList) {
-				if (activityRepo.addActivity(activity)) {
-					added = true
-				}
-			}
-			if (!added) {
-				val activityRepo = ActivityRepo(activityType, mutableListOf(activity))
-				activityRepoList.add(activityRepo)
+	val possibleEmails = mutableListOf<String>(
+		"mail@$preName$surName.de",
+		"$preName.$surName@notgmail.de",
+		"$preName.$surName@dataseller.de"
+	)
+
+	val email = possibleEmails.random()
+	val phone = Random.nextInt(100000, 999999).toString()
+	val address = generateAddress()
+
+	return CleaningObjectManagement(preName, surName, phone, email, address)
+}
+
+fun generateRandomDate(): LocalDate {
+	return LocalDate.of(Random.nextInt(2021, 2022), Random.nextInt(7, 12), Random.nextInt(1, 28))
+}
+
+fun generateCleaningObject(): CleaningObject {
+	val activityTypeNames = mutableListOf<String>("Clean stairs", "Cut the lawn", "Bring out garbage")
+
+	val activityRepoList = mutableListOf<ActivityRepo>()
+	val cleaningObjectType = CleaningObjectType.values().random()
+	val cleaningObjectAddress = generateAddress()
+	val cleaningObjectManagement = generateCleaningObjectManagement()
+
+	for (j in 1..Random.nextInt(1, 10)) {
+		val startDate = generateRandomDate()
+		val activityTypeName = activityTypeNames.random()
+
+		val sector = Sector.values().random()
+		val activityType = ActivityType(activityTypeName, sector)
+		val activity = Activity(startDate, Random.nextInt(1, 365), activityType)
+
+		var added = false
+		for (activityRepo in activityRepoList) {
+			if (activityRepo.addActivity(activity)) {
+				added = true
 			}
 		}
+		if (!added) {
+			val activityRepo = ActivityRepo(activityType, mutableListOf(activity))
+			activityRepoList.add(activityRepo)
+		}
+	}
 
+	return CleaningObject(
+		cleaningObjectAddress,
+		cleaningObjectManagement,
+		activityRepoList,
+		cleaningObjectType
+	)
+}
 
-		val cleaningObject = CleaningObject(address, cleaningObjectManagement, activityRepoList, cleaningObjectType)
+fun generateMockData(): MutableList<CleaningObject> {
+	val cleaningObjectList = mutableListOf<CleaningObject>()
 
-		cleaningObjectList.add(cleaningObject)
+	for (i in 1..10) {
+		cleaningObjectList.add(generateCleaningObject())
 	}
 
 	return cleaningObjectList

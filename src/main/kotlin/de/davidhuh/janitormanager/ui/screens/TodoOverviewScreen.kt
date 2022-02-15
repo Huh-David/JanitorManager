@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.davidhuh.janitormanager.domain.Todo
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 import org.intellij.lang.annotations.JdkConstants.CalendarMonth
 
@@ -22,27 +23,14 @@ import org.intellij.lang.annotations.JdkConstants.CalendarMonth
 fun todoOverviewScreen(
 	navController: NavController,
 ) {
-	val stateVertical = rememberScrollState(0)
-
-	VerticalScrollbar(
-		modifier = Modifier
-			.fillMaxHeight(),
-		adapter = rememberScrollbarAdapter(stateVertical)
-	)
-
-	Column(
-		modifier = Modifier
-			.padding(start = 80.dp)
-			.fillMaxSize()
-			.verticalScroll(stateVertical),
-		verticalArrangement = Arrangement.Center,
-		horizontalAlignment = Alignment.CenterHorizontally
-	) {
+	templateScreen {
 		val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
 
 		Text("[${navController.cleaningObjectIndex}] $cleaningObject")
 		Column() {
-			cleaningObject.activityRepoList[navController.activityIndex].getAllTodos().forEachIndexed { _, todo ->
+			val todoList: MutableList<Todo> = cleaningObject.activityRepoList[navController.activityIndex].getAllTodos()
+
+			todoList.forEachIndexed { index, todo ->
 
 				val activityText = todo.activity.activityType.toString()
 				val text: MutableState<String> = remember { mutableStateOf("$todo") }
@@ -67,7 +55,9 @@ fun todoOverviewScreen(
 							.weight(3f)
 					)
 				}
-				Divider()
+				if (index < todoList.size - 1) {
+					Divider()
+				}
 			}
 		}
 	}

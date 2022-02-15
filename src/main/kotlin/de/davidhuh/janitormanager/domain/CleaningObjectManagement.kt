@@ -7,5 +7,11 @@ data class CleaningObjectManagement(
 	val email: String,
 	val address: Address,
 ) {
+	override fun toString(): String {
+		return "$firstName $lastName - $address $email $phone"
+	}
 
+	fun generalInformation(): String {
+		return "$firstName $lastName"
+	}
 }

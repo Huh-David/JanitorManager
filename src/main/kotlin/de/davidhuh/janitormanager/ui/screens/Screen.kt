@@ -1,10 +1,7 @@
 package de.davidhuh.janitormanager.ui.screens
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
 enum class Screen(
@@ -26,5 +23,9 @@ enum class Screen(
 	AllTodosScreen(
 		label = "All Todos",
 		icon = Icons.Filled.Check
+	),
+	EditScreen(
+		label = "All Todos",
+		icon = Icons.Filled.Add
 	)
 }

@@ -83,6 +83,9 @@ fun customNavigationHost(
 		composable(Screen.AllTodosScreen.name) {
 			allTodosScreen(navController)
 		}
+		composable(Screen.EditScreen.name) {
+			editScreen(navController)
+		}
 	}.build()
 }
 

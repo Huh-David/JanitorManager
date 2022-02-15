@@ -90,21 +90,7 @@ fun todoOverviewRow(
 fun allTodosScreen(
 	navController: NavController,
 ) {
-	val stateVertical = rememberScrollState(0)
-
-	VerticalScrollbar(
-		modifier = Modifier
-			.fillMaxHeight(),
-		adapter = rememberScrollbarAdapter(stateVertical),
-	)
-
-	Column(
-		modifier = Modifier
-			.padding(start = 80.dp)
-			.verticalScroll(stateVertical),
-		verticalArrangement = Arrangement.Center,
-		horizontalAlignment = Alignment.CenterHorizontally
-	) {
+	templateScreen {
 		Text("All remaining Todos")
 		val todoIndexMap = remember { mutableMapOf<Todo, Pair<CleaningObject, Int>>() }
 

@@ -1,6 +1,14 @@
 package de.davidhuh.janitormanager.domain
 
-enum class CleaningObjectType(index: Int) {
-	APPARTMENT(0),
-	HOUSE(1)
+enum class CleaningObjectType() {
+	APARTMENT {
+		override fun toString(): String {
+			return "\uD83D\uDECB" // 🛋️
+		}
+	},
+	HOUSE {
+		override fun toString(): String {
+			return "\uD83C\uDFD8" // 🏘️
+		}
+	}
 }

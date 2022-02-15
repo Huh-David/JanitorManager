@@ -11,12 +11,13 @@ fun generateMockData(): MutableList<CleaningObject> {
 	val preNameList = mutableListOf<String>("Nico", "Patrick", "Lisa", "OtherCoolDudesPreNames", "David")
 	val surNameList = mutableListOf<String>("Holzi", "Mueller", "Klitschko", "OtherCoolDudesSurNames", "Huh")
 	val activityTypeNames = mutableListOf<String>("Clean stairs", "Cut the lawn", "Bring out garbage")
-	val sectorNames = mutableListOf<String>("Indoor")//, "Outdoor", "Somewhere")
+	val sectorNames = mutableListOf<String>("Indoor", "Outdoor", "Somewhere")
 	val cityNames = mutableListOf<String>("Karlsruhe", "Bühl", "Sinsheim", "Sinzheim", "Stuttgart", "Offenburg")
 	val streetNames = mutableListOf<String>("Hauptstr.", "Bahnhofsstr.", "Schulstr.", "Cool street")
 
-	for (i in 1..10) {
+	for (i in 1..100) {
 		val activityRepoList = mutableListOf<ActivityRepo>()
+		val cleaningObjectType = CleaningObjectType.values().random()
 
 		val preName = preNameList.random()
 		val surName = surNameList.random()
@@ -54,7 +55,7 @@ fun generateMockData(): MutableList<CleaningObject> {
 		}
 
 
-		val cleaningObject = CleaningObject(address, cleaningObjectManagement, activityRepoList)
+		val cleaningObject = CleaningObject(address, cleaningObjectManagement, activityRepoList, cleaningObjectType)
 
 		cleaningObjectList.add(cleaningObject)
 	}

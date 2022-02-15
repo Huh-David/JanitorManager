@@ -33,7 +33,7 @@ fun cleaningObjectCard(
 			modifier = Modifier.fillMaxWidth(),
 			horizontalArrangement = Arrangement.SpaceBetween
 		) {
-			Text("[$cleaningObjectIndex] $cleaningObject")
+			Text("[$cleaningObjectIndex] ${cleaningObject.toAlternativeString()}")
 			Text("${cleaningObject.activityRepoList.size} Activities")
 		}
 	}

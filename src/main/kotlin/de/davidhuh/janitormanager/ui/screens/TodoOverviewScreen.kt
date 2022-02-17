@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.Todo
-import de.davidhuh.janitormanager.service.saveTodoList
+import de.davidhuh.janitormanager.service.TodoService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 import org.intellij.lang.annotations.JdkConstants.CalendarMonth
 
@@ -31,6 +31,7 @@ fun todoOverviewScreen(
 		Column() {
 			val activityIndex = navController.activityIndex
 			val todoList: MutableList<Todo> = cleaningObject.activityRepoList[activityIndex].getAllTodos(cleaningObject)
+			val todoService = TodoService(cleaningObject)
 
 			todoList.forEachIndexed { index, todo ->
 
@@ -41,7 +42,7 @@ fun todoOverviewScreen(
 					modifier = Modifier.padding(4.dp),
 					onClick = {
 						todo.changeStatus()
-						saveTodoList(todoList, cleaningObject)
+						todoService.saveTodoList(todoList)
 						text.value = "$todo"
 					}
 				) {

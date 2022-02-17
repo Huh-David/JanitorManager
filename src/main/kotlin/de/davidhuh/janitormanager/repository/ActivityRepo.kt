@@ -5,8 +5,7 @@ import de.davidhuh.janitormanager.domain.Activity
 import de.davidhuh.janitormanager.domain.ActivityType
 import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.domain.Todo
-import de.davidhuh.janitormanager.service.readTodoList
-import de.davidhuh.janitormanager.service.saveTodoList
+import de.davidhuh.janitormanager.service.TodoService
 
 @Serializable
 class ActivityRepo(
@@ -40,7 +39,8 @@ class ActivityRepo(
 			}
 		}
 
-		val savedTodoList = readTodoList(activityType, cleaningObject)
+		val todoService = TodoService(cleaningObject)
+		val savedTodoList = todoService.readTodoList(activityType)
 
 		for (savedTodo in savedTodoList) {
 			if (!todoList.contains(savedTodo)) {
@@ -54,7 +54,7 @@ class ActivityRepo(
 		}
 
 		todoList.sortBy { it.date }
-		saveTodoList(todoList, cleaningObject)
+		todoService.saveTodoList(todoList)
 
 		return todoList
 	}

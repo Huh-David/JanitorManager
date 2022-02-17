@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
 import de.davidhuh.janitormanager.domain.CleaningObject
-import de.davidhuh.janitormanager.service.saveTodoList
 import java.time.LocalDate
 
 @Composable

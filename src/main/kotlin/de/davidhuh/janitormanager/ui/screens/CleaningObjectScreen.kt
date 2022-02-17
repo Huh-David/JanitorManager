@@ -52,7 +52,7 @@ fun cleaningObjectScreen(
 				// TODO implementation
 			}
 		) {
-			Text("Update Overview")
+			Text("Update Overview (not implemented)")
 		}
 		Button(
 			onClick = {

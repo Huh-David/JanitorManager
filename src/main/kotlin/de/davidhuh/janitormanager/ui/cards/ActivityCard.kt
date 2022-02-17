@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.Activity
 import de.davidhuh.janitormanager.domain.Todo
 import de.davidhuh.janitormanager.repository.ActivityRepo
-import de.davidhuh.janitormanager.service.saveTodoList
+import de.davidhuh.janitormanager.service.TodoService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 import de.davidhuh.janitormanager.ui.screens.Screen
 
@@ -72,13 +72,13 @@ fun activityRepoCard(
 	val todoList = activityRepo.getAllTodos(cleaningObject)
 	val firstTodo: Todo = activityRepo.getFirstTodo(todoList)
 	val todoText: MutableState<String> = remember { mutableStateOf("$firstTodo") }
-
+	val todoService = TodoService(cleaningObject)
 	todoOverviewRow(
 		"${activityRepo.activityType}",
 		text2 = todoText.value,
 		onClick1 = {
 			firstTodo.changeStatus()
-			saveTodoList(todoList, cleaningObject)
+			todoService.saveTodoList(todoList)
 			todoText.value = "$firstTodo"
 		},
 		"Todo Overview",

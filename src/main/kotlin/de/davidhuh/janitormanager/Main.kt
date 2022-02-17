@@ -11,20 +11,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import de.davidhuh.janitormanager.domain.*
-import de.davidhuh.janitormanager.service.generateMockData
+import de.davidhuh.janitormanager.service.*
 import de.davidhuh.janitormanager.ui.navcontroller.*
 import de.davidhuh.janitormanager.ui.screens.*
 
 
 @Composable
 @Preview
-fun App() {
-	val cleaningObjectList = generateMockData().sortedBy { it.toSortString() } as MutableList<CleaningObject>
+fun app() {
+	if (!checkIfMockDataExists()) {
+		saveCleaningObjectList(generateMockData(amount = 4))
+	}
+
+	val cleaningObjectList = readCleaningObjectList().sortedBy { it.toSortString() } as MutableList<CleaningObject>
+
 	val screens = Screen.values().toList()
 	val navController by rememberNavController(Screen.HomeScreen.name, mutableSetOf(), cleaningObjectList)
-	val currentScreen by remember {
-		navController.currentScreen
-	}
+	val currentScreen by remember { navController.currentScreen }
 
 	MaterialTheme {
 		Surface(
@@ -92,6 +95,6 @@ fun customNavigationHost(
 
 fun main() = application {
 	Window(onCloseRequest = ::exitApplication) {
-		App()
+		app()
 	}
 }

@@ -1,10 +1,11 @@
 package de.davidhuh.janitormanager.domain
 
-import java.time.LocalDate
+import de.davidhuh.janitormanager.repository.ActivityRepo
+import kotlinx.datetime.LocalDate
 
-data class ActivityAssignment(
+data class ActivityRepoAssignment(
 	val employee: Employee,
-	val activity: Activity,
+	val activityRepo: ActivityRepo,
 	val startDate: LocalDate, // range of date when the employee is assigned to the activity
 	val endDate: LocalDate,
 ) {

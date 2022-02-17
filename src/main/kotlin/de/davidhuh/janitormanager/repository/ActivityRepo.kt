@@ -1,14 +1,19 @@
 package de.davidhuh.janitormanager.repository
 
+import kotlinx.serialization.Serializable
 import de.davidhuh.janitormanager.domain.Activity
 import de.davidhuh.janitormanager.domain.ActivityType
+import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.domain.Todo
+import de.davidhuh.janitormanager.service.readTodoList
+import de.davidhuh.janitormanager.service.saveTodoList
 
+@Serializable
 class ActivityRepo(
 	var activityType: ActivityType,
 	var activityList: MutableList<Activity>,
 ) {
-	fun checkCompatibility(activity: Activity): Boolean {
+	private fun checkCompatibility(activity: Activity): Boolean {
 		return activity.activityType == activityType
 	}
 
@@ -26,7 +31,7 @@ class ActivityRepo(
 		return false
 	}
 
-	fun getAllTodos(): MutableList<Todo> {
+	fun getAllTodos(cleaningObject: CleaningObject): MutableList<Todo> {
 		val todoList = mutableListOf<Todo>()
 
 		for (activity in activityList) {
@@ -35,12 +40,26 @@ class ActivityRepo(
 			}
 		}
 
+		val savedTodoList = readTodoList(activityType, cleaningObject)
+
+		for (savedTodo in savedTodoList) {
+			if (!todoList.contains(savedTodo)) {
+				todoList.add(savedTodo)
+			} else if (todoList.contains(savedTodo)) {
+				val todo = todoList.find { it == savedTodo }
+				if (todo != null) {
+					todo.done = savedTodo.done
+				}
+			}
+		}
+
 		todoList.sortBy { it.date }
+		saveTodoList(todoList, cleaningObject)
+
 		return todoList
 	}
 
-	fun getFirstTodo(): Todo {
-		val todoList = getAllTodos()
+	fun getFirstTodo(todoList: List<Todo>): Todo {
 		return if (todoList.none() { !it.done }) {
 			todoList.last()
 		} else {

@@ -1,5 +1,7 @@
 package de.davidhuh.janitormanager.domain
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Address(
 	val street: String?,
 	val house_number: String?,

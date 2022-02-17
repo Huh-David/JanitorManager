@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
 import de.davidhuh.janitormanager.domain.CleaningObject
+import de.davidhuh.janitormanager.service.saveTodoList
 import java.time.LocalDate
 
 @Composable
@@ -96,7 +97,7 @@ fun allTodosScreen(
 
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
 			for (activityRepo in cleaningObject.activityRepoList) {
-				activityRepo.getAllTodos().forEach() { todo ->
+				activityRepo.getAllTodos(cleaningObject).forEach() { todo ->
 					if (!todo.done) {
 						todoIndexMap[todo] = Pair(cleaningObject, index)
 					}
@@ -120,7 +121,8 @@ fun allTodosScreen(
 					navController.navigate(Screen.CleaningObjectScreen.name)
 				},
 				onClick2 = {
-					todo.changeStatus() // TODO fix me please
+					// saveTodoList() TODO does not work
+					todo.changeStatus()
 					todoText.value = "$todo"
 				},
 			)

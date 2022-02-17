@@ -2,8 +2,17 @@ package de.davidhuh.janitormanager.service
 
 import de.davidhuh.janitormanager.domain.*
 import de.davidhuh.janitormanager.repository.ActivityRepo
-import java.time.LocalDate
+import kotlinx.datetime.LocalDate
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.decodeFromString
+import java.io.File
+import java.io.IOException
 import kotlin.random.Random
+
+const val DIRPATH = ".data/"
+const val CLEANINGOBJECTSFILEPATH = "${DIRPATH}cleaningObjects.json"
+const val TODOSFILEPATH = "${DIRPATH}todos"
 
 fun generateAddress(): Address {
 	val cityNames = mutableListOf<String>("Karlsruhe", "Bühl", "Sinsheim", "Sinzheim", "Stuttgart", "Offenburg")
@@ -44,7 +53,7 @@ fun generateCleaningObjectManagement(): CleaningObjectManagement {
 }
 
 fun generateRandomDate(): LocalDate {
-	return LocalDate.of(Random.nextInt(2021, 2022), Random.nextInt(7, 12), Random.nextInt(1, 28))
+	return LocalDate(Random.nextInt(2021, 2022), Random.nextInt(7, 12), Random.nextInt(1, 28))
 }
 
 fun generateCleaningObject(): CleaningObject {
@@ -83,12 +92,68 @@ fun generateCleaningObject(): CleaningObject {
 	)
 }
 
-fun generateMockData(): MutableList<CleaningObject> {
+fun generateMockData(amount: Int): MutableList<CleaningObject> {
 	val cleaningObjectList = mutableListOf<CleaningObject>()
 
-	for (i in 1..10) {
+	for (i in 1..amount) {
 		cleaningObjectList.add(generateCleaningObject())
 	}
 
 	return cleaningObjectList
+}
+
+private fun makeDirectories(path: String) {
+	if (!File(path).exists()) {
+		File(path).mkdirs()
+	}
+}
+
+fun saveCleaningObjectList(cleaningObjectList: MutableList<CleaningObject>) {
+	makeDirectories(DIRPATH)
+
+	val jsonText = Json.encodeToString(cleaningObjectList)
+	File(CLEANINGOBJECTSFILEPATH).writeText(jsonText)
+}
+
+fun saveTodoList(todoList: MutableList<Todo>, cleaningObject: CleaningObject) {
+	val activityTypeString = todoList.first().activity.activityType.toString().replace(" ", "-")
+	val cleaningObjectString = cleaningObject.toSortString().replace(" ", "-")
+
+	makeDirectories(DIRPATH)
+
+	todoList.sortBy { it.date }
+
+	val jsonText = Json.encodeToString(todoList)
+	File("$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json").writeText(jsonText)
+}
+
+fun readCleaningObjectList(): MutableList<CleaningObject> {
+	return try {
+		val text = File(CLEANINGOBJECTSFILEPATH).readText()
+		Json.decodeFromString<MutableList<CleaningObject>>(text)
+	} catch (_: IOException) {
+		mutableListOf()
+	}
+}
+
+fun readTodoList(activityType: ActivityType, cleaningObject: CleaningObject): MutableList<Todo> {
+	return try {
+		val activityTypeString = activityType.toString().replace(" ", "-")
+		val cleaningObjectString = cleaningObject.toSortString().replace(" ", "-")
+
+		val text = File("$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json").readText()
+		Json.decodeFromString<MutableList<Todo>>(text)
+	} catch (_: IOException) {
+		mutableListOf()
+	}
+}
+
+fun checkIfMockDataExists(): Boolean {
+	try {
+		if (readCleaningObjectList().size != 0) {
+			return true
+		}
+	} catch (_: IOException) {
+	}
+	return false
 }

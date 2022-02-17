@@ -1,5 +1,7 @@
 package de.davidhuh.janitormanager.domain
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CleaningObjectManagement(
 	val firstName: String,
 	val lastName: String,

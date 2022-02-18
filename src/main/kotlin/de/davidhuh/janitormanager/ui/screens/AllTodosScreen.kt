@@ -1,12 +1,8 @@
 package de.davidhuh.janitormanager.ui.screens
 
-import androidx.compose.foundation.VerticalScrollbar
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.rememberScrollbarAdapter
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,30 +12,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.Todo
-import de.davidhuh.janitormanager.ui.navcontroller.NavController
-import androidx.compose.foundation.HorizontalScrollbar
-import androidx.compose.foundation.VerticalScrollbar
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.rememberScrollbarAdapter
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.WindowState
-import androidx.compose.ui.window.singleWindowApplication
 import de.davidhuh.janitormanager.domain.CleaningObject
-import java.time.LocalDate
+import de.davidhuh.janitormanager.domain.Todo
+import de.davidhuh.janitormanager.service.TodoService
+import de.davidhuh.janitormanager.ui.navcontroller.NavController
 
 @Composable
 fun todoOverviewRow(
@@ -120,8 +96,18 @@ fun allTodosScreen(
 					navController.navigate(Screen.CleaningObjectScreen.name)
 				},
 				onClick2 = {
-					// saveTodoList() TODO does not work
-					todo.changeStatus()
+					val cleaningObject = cleaningObjectIndexPair.first
+					val todoService = TodoService(cleaningObject)
+					val todoList = cleaningObject.activityRepoList.find {
+						it.activityType == todo.activity.activityType
+					}?.getAllTodos(cleaningObject)
+
+
+					if (todoList != null) {
+						todoList.find { it == todo }?.changeStatus()
+						todoService.saveTodoList(todoList)
+					}
+
 					todoText.value = "$todo"
 				},
 			)

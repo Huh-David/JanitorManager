@@ -18,12 +18,20 @@ class TodoService(
 		}
 	}
 
+	private fun getFormattedFilePath(activityType: ActivityType, cleaningObject: CleaningObject): String {
+		val activityTypeString = activityType.toString()
+			.replace(" ", "")
+			.replace(".", "")
+		val cleaningObjectString = cleaningObject.toSortString()
+			.replace(" ", "")
+			.replace(".", "")
+
+		return "$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json"
+	}
+
 	fun readTodoList(activityType: ActivityType): MutableList<Todo> {
 		return try {
-			val activityTypeString = activityType.toString().replace(" ", "-")
-			val cleaningObjectString = cleaningObject.toSortString().replace(" ", "-")
-
-			val text = File("$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json").readText()
+			val text = File(getFormattedFilePath(activityType, cleaningObject)).readText()
 			Json.decodeFromString<MutableList<Todo>>(text)
 		} catch (_: IOException) {
 			mutableListOf()
@@ -31,14 +39,11 @@ class TodoService(
 	}
 
 	fun saveTodoList(todoList: MutableList<Todo>) {
-		val activityTypeString = todoList.first().activity.activityType.toString().replace(" ", "-")
-		val cleaningObjectString = cleaningObject.toSortString().replace(" ", "-")
-
 		makeDirectories()
 
 		todoList.sortBy { it.date }
 
 		val jsonText = Json.encodeToString(todoList)
-		File("$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json").writeText(jsonText)
+		File(getFormattedFilePath(todoList.first().activity.activityType, cleaningObject)).writeText(jsonText)
 	}
 }

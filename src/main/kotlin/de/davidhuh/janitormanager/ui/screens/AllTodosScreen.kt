@@ -1,6 +1,9 @@
 package de.davidhuh.janitormanager.ui.screens
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.OutlinedButton
@@ -11,6 +14,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.domain.Todo
@@ -29,35 +34,42 @@ fun todoOverviewRow(
 	Row(modifier = modifier) {
 		OutlinedButton(
 			modifier = Modifier
-				.weight(3f)
-				.padding(start = 3.dp)
-				.wrapContentWidth(Alignment.Start),
+				.weight(2f)
+				.padding(start = 3.dp, top = 4.dp, bottom = 4.dp)
+				.wrapContentWidth(Alignment.Start)
+				.height(50.dp),
 			onClick = onClick1
 		) {
-			Row {
+			Row(
+				modifier = Modifier
+			) {
 				Text(
 					text = text1,
 					modifier = Modifier
-						.weight(3f)
+						.weight(1f)
 						.wrapContentWidth(Alignment.Start)
 				)
 				Text(
 					text = text2,
 					modifier = Modifier
-						.weight(2f)
-						.wrapContentWidth(Alignment.End)
+						.weight(1f)
+						.wrapContentWidth(Alignment.End),
+					textAlign = TextAlign.End
 				)
 			}
 		}
 
 		OutlinedButton(
 			modifier = Modifier
-				.weight(1f)
-				.padding(end = 4.dp)
-				.wrapContentWidth(Alignment.End),
+				.weight(2f)
+				.padding(end = 4.dp, top = 4.dp, bottom = 4.dp)
+				.wrapContentWidth(Alignment.End)
+				.height(50.dp),
 			onClick = onClick2
 		) {
-			Row { Text(text3) }
+			Row {
+				Text(text3)
+			}
 		}
 	}
 }
@@ -73,7 +85,7 @@ fun allTodosScreen(
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
 			for (activityRepo in cleaningObject.activityRepoList) {
 				activityRepo.getAllTodos(cleaningObject).forEach() { todo ->
-					if (!todo.done) {
+					if (!todo.isDone()) {
 						todoIndexMap[todo] = Pair(cleaningObject, index)
 					}
 				}
@@ -82,10 +94,14 @@ fun allTodosScreen(
 		val sortedTodoIndexMap = todoIndexMap.toSortedMap(compareBy<Todo> { it.date }.thenBy { it.activity.toString() })
 
 		sortedTodoIndexMap.forEach() { (todo, cleaningObjectIndexPair) ->
-			val cleaningObjectText: MutableState<String> =
-				remember { mutableStateOf("${cleaningObjectIndexPair.first}") }
-			val activityText: MutableState<String> = remember { mutableStateOf("${todo.activity.activityType}") }
-			val todoText: MutableState<String> = remember { mutableStateOf("$todo") }
+			val cleaningObjectText: MutableState<String> = remember {
+				mutableStateOf(cleaningObjectIndexPair.first.address.toStringTwoLines())
+			}
+			val activityText: MutableState<String> =
+				remember { mutableStateOf(todo.activity.activityType.toStringTwoLines()) }
+			val todoText: MutableState<String> = remember {
+				mutableStateOf(todo.toStringWithOverdueDays())
+			}
 
 			todoOverviewRow(
 				text1 = cleaningObjectText.value,

@@ -9,4 +9,6 @@ data class Address(
 	val city: String?,
 ) {
 	override fun toString(): String = "$street $house_number - $zipcode $city"
+
+	fun toStringTwoLines(): String = "$street $house_number\n$zipcode $city"
 }

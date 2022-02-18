@@ -46,7 +46,7 @@ class ActivityRepo(
 			} else if (todoList.contains(savedTodo)) {
 				val todo = todoList.find { it == savedTodo }
 				if (todo != null) {
-					todo.done = savedTodo.done
+					todo.doneDate = savedTodo.doneDate
 				}
 			}
 		}
@@ -58,10 +58,10 @@ class ActivityRepo(
 	}
 
 	fun getFirstTodo(todoList: List<Todo>): Todo {
-		return if (todoList.none() { !it.done }) {
+		return if (todoList.none() { !it.isDone() }) {
 			todoList.last()
 		} else {
-			todoList.first() { !it.done }
+			todoList.first() { !it.isDone() }
 		}
 	}
 }

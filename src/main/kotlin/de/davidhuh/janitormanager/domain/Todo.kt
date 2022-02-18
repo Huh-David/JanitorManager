@@ -1,8 +1,8 @@
 package de.davidhuh.janitormanager.domain
 
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.daysUntil
 import kotlinx.serialization.Serializable
-import java.util.Calendar
 import java.util.Calendar.*
 import java.util.Objects
 
@@ -10,21 +10,33 @@ import java.util.Objects
 data class Todo(
 	val activity: Activity,
 	val date: LocalDate,
-	var done: Boolean = false,
+	var doneDate: LocalDate? = null,
 ) {
-	val overdue = date < LocalDate(
+	private val now = LocalDate(
 		getInstance().get(YEAR),
 		getInstance().get(MONTH),
 		getInstance().get(DAY_OF_MONTH)
 	)
 
+	fun isDone(): Boolean {
+		return (this.doneDate != null)
+	}
+
+	fun isOverdue(): Boolean {
+		return date < now
+	}
+
 	fun changeStatus() {
-		this.done = !this.done
+		this.doneDate = now
+	}
+
+	fun toStringWithOverdueDays(): String {
+		return "$this (${date.daysUntil(now)} days overdue)"
 	}
 
 	override fun toString(): String {
-		val doneText = if (this.done) "✅" else "❌"
-		val overdueText = if (this.overdue) "⌛" else "⏳"
+		val doneText = if (this.isDone()) "✅" else "❌"
+		val overdueText = if (this.isOverdue()) "⌛" else "⏳"
 		return "${this.date} $overdueText $doneText"
 	}
 

@@ -27,7 +27,11 @@ data class Todo(
 	}
 
 	fun changeStatus() {
-		this.doneDate = now
+		this.doneDate = if (this.doneDate == null) {
+			now
+		} else {
+			null
+		}
 	}
 
 	fun toStringWithOverdueDays(): String {

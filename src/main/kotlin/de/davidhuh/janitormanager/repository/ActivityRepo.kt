@@ -52,6 +52,12 @@ class ActivityRepo(
 		}
 
 		todoList.sortBy { it.date }
+
+		val firstNotOverdueTodo = todoList.first { !it.isOverdue() }
+
+		todoList.removeAll { !it.isOverdue() }
+		todoList.add(firstNotOverdueTodo)
+
 		todoService.saveTodoList(todoList)
 
 		return todoList

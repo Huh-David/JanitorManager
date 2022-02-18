@@ -1,5 +1,6 @@
 package de.davidhuh.janitormanager.service
 
+import androidx.compose.ui.text.toLowerCase
 import de.davidhuh.janitormanager.domain.ActivityType
 import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.domain.Todo
@@ -26,7 +27,7 @@ class TodoService(
 			.replace(" ", "")
 			.replace(".", "")
 
-		return "$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json"
+		return "$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json".lowercase()
 	}
 
 	fun readTodoList(activityType: ActivityType): MutableList<Todo> {

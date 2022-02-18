@@ -8,18 +8,21 @@ import kotlinx.datetime.plus
 import java.util.Calendar
 
 fun createTodoList(activity: Activity): MutableList<Todo> {
-	val today: LocalDate = LocalDate(
+	val today = LocalDate(
 		Calendar.getInstance().get(Calendar.YEAR),
 		Calendar.getInstance().get(Calendar.MONTH),
 		Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 	)
 	var todoDay = activity.startDate
 	val todoList = mutableListOf<Todo>()
+	var condition = todoDay < today
 
-	while (todoDay < today) {
+	while (condition) {
+		condition = todoDay < today
 		val todo = Todo(activity, todoDay)
 		todoList.add(todo)
 		todoDay = todoDay.plus(DatePeriod(days = activity.intervalInDays))
+
 	}
 
 	return todoList

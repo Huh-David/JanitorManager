@@ -3,6 +3,7 @@ package de.davidhuh.janitormanager.service
 import de.davidhuh.janitormanager.domain.*
 import de.davidhuh.janitormanager.repository.ActivityRepo
 import kotlinx.datetime.LocalDate
+import java.util.*
 import kotlin.random.Random
 
 const val DIRPATH = ".data/"
@@ -85,6 +86,17 @@ class MockDataService() {
 			cleaningObjectManagement,
 			activityRepoList,
 			cleaningObjectType
+		)
+	}
+
+	fun generateEmployee(): Employee {
+		val fullName = generateName()
+
+		return Employee(
+			employeeId = UUID.randomUUID(),
+			preName = fullName.first,
+			surName = fullName.second,
+			registrationDate = generateRandomDate()
 		)
 	}
 

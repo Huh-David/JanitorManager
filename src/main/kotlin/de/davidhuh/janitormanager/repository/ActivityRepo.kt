@@ -1,16 +1,14 @@
 package de.davidhuh.janitormanager.repository
 
+import de.davidhuh.janitormanager.domain.*
 import kotlinx.serialization.Serializable
-import de.davidhuh.janitormanager.domain.Activity
-import de.davidhuh.janitormanager.domain.ActivityType
-import de.davidhuh.janitormanager.domain.CleaningObject
-import de.davidhuh.janitormanager.domain.Todo
 import de.davidhuh.janitormanager.service.TodoService
 
 @Serializable
 class ActivityRepo(
 	var activityType: ActivityType,
 	var activityList: MutableList<Activity>,
+	val activityRepoAssignmentList: MutableList<ActivityRepoAssignment> = mutableListOf<ActivityRepoAssignment>(),
 ) {
 	private fun checkCompatibility(activity: Activity): Boolean {
 		return activity.activityType == activityType

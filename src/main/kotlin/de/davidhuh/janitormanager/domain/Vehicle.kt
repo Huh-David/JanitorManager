@@ -5,9 +5,16 @@ class Vehicle(
 	val brand: String,
 	val model: String,
 	val hasLoadingArea: Boolean = false,
-	var kilometers: Float,
-	val fuelType: FuelType, // TODO to ENUM
+	private var kilometers: Float,
+	val fuelType: FuelType,
 ) {
+	fun addKilometers(kilometers: Float) {
+		this.kilometers.plus(kilometers)
+	}
+
+	fun subtractKilometers(kilometers: Float) {
+		this.kilometers.minus(kilometers)
+	}
 
 	enum class FuelType() {
 		DIESEL,

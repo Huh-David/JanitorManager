@@ -6,7 +6,6 @@ enum class Sector() {
 	SOMEWHERE {};
 
 	override fun toString(): String {
-		// TODO change from Uppercase to normalized string
-		return super.toString()
+		return "${super.toString().subSequence(0, 1)}${super.toString().subSequence(1, super.toString().length).toString().lowercase()}"
 	}
 }

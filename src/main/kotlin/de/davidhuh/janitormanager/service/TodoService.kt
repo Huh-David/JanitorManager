@@ -13,8 +13,8 @@ class TodoService(
 	private val address: Address,
 ) {
 	private fun makeDirectories() {
-		if (!File(DIRPATH).exists()) {
-			File(DIRPATH).mkdirs()
+		if (!File(HelperService.getDirPath()).exists()) {
+			File(HelperService.getDirPath()).mkdirs()
 		}
 	}
 
@@ -26,7 +26,7 @@ class TodoService(
 			.replace(" ", "")
 			.replace(".", "")
 
-		return "$TODOSFILEPATH-$addressString-$activityTypeString.json".lowercase()
+		return "${HelperService.getTodosFilePath()}-$addressString-$activityTypeString.json".lowercase()
 	}
 
 	fun changeAddressOfTodoList(oldAddress: Address, todoList: MutableList<Todo>) {

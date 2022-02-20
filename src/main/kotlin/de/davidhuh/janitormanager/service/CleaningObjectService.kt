@@ -18,15 +18,15 @@ class CleaningObjectService() {
 	}
 
 	fun saveCleaningObjectList(cleaningObjectList: MutableList<CleaningObject>) {
-		makeDirectories(DIRPATH)
+		makeDirectories(HelperService.getDirPath())
 
 		val jsonText = Json.encodeToString(cleaningObjectList)
-		File(CLEANINGOBJECTSFILEPATH).writeText(jsonText)
+		File(HelperService.getCleaningObjectFilePath()).writeText(jsonText)
 	}
 
 	fun readCleaningObjectList(): MutableList<CleaningObject> {
 		return try {
-			val text = File(CLEANINGOBJECTSFILEPATH).readText()
+			val text = File(HelperService.getCleaningObjectFilePath()).readText()
 			Json.decodeFromString<MutableList<CleaningObject>>(text)
 		} catch (_: IOException) {
 			mutableListOf()

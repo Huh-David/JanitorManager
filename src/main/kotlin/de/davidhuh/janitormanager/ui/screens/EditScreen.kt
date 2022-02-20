@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.Address
-import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.domain.CleaningObjectManagement
 import de.davidhuh.janitormanager.service.CleaningObjectService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController

@@ -6,10 +6,6 @@ import kotlinx.datetime.LocalDate
 import java.util.*
 import kotlin.random.Random
 
-const val DIRPATH = ".data/"
-const val CLEANINGOBJECTSFILEPATH = "${DIRPATH}cleaningObjects.json"
-const val TODOSFILEPATH = "${DIRPATH}todos"
-
 class MockDataService() {
 	private fun generateAddress(): Address {
 		val cityNames = mutableListOf<String>("Karlsruhe", "Bühl", "Sinsheim", "Sinzheim", "Stuttgart", "Offenburg")

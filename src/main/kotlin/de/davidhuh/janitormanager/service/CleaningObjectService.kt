@@ -2,6 +2,7 @@ package de.davidhuh.janitormanager.service
 
 import de.davidhuh.janitormanager.domain.Address
 import de.davidhuh.janitormanager.domain.CleaningObject
+import de.davidhuh.janitormanager.domain.CleaningObjectManagement
 import de.davidhuh.janitormanager.domain.Todo
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -63,5 +64,14 @@ class CleaningObjectService() {
 		for (todoListToSave in todoListsToSave) {
 			todoService.changeAddressOfTodoList(oldAddress, todoListToSave)
 		}
+	}
+
+	fun changeCleaningObjectManagementOfCleaningObject(
+		cleaningObjectList: MutableList<CleaningObject>,
+		cleaningObject: CleaningObject,
+		newCleaningObjectManagement: CleaningObjectManagement,
+	) {
+		cleaningObject.changeCleaningObjectManagement(newCleaningObjectManagement)
+		saveCleaningObjectList(cleaningObjectList)
 	}
 }

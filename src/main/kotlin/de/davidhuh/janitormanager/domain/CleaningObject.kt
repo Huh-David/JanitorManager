@@ -22,6 +22,10 @@ class CleaningObject(
 		this.cleaningObjectType = cleaningObjectType
 	}
 
+	fun calculateEstimatedCosts(space: Space, pricePerSquareMeter: Float): Float {
+		return space.value * pricePerSquareMeter
+	}
+
 	override fun toString(): String = "$cleaningObjectType - $address"
 
 	fun toAlternativeString(): String =

@@ -1,10 +1,10 @@
 package de.davidhuh.janitormanager.domain
 
 data class Space(
-	val width: Int,
-	val height: Int,
+	val width: Float,
+	val height: Float,
 ) {
-	private val value: Int = width * height
+	val value: Float = width * height
 
-	override fun toString(): String = value.toString()
+	override fun toString(): String = "$value m²"
 }

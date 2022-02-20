@@ -1,8 +1,8 @@
 package de.davidhuh.janitormanager.domain
 
+import de.davidhuh.janitormanager.repository.TodoRepo
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
-import de.davidhuh.janitormanager.repository.createTodoList
 
 @Serializable
 data class Activity(
@@ -14,5 +14,5 @@ data class Activity(
 		return "$activityType - $startDate - $intervalInDays"
 	}
 
-	val todoList = createTodoList(this)
+	val todoList = TodoRepo(this).createTodoList()
 }

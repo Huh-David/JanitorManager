@@ -53,17 +53,21 @@ class ActivityRepo(
 
 		todoList.sortBy { it.date }
 
-		val firstNotOverdueTodo = todoList.first { !it.isOverdue() }
-
-		todoList.removeAll { !it.isOverdue() }
+		val firstNotOverdueTodo = todoList.first { !it.isOverdue() && !it.isDone() }
+		todoList.removeAll { !it.isOverdue() && !it.isDone() }
 		todoList.add(firstNotOverdueTodo)
+
 
 		todoService.saveTodoList(todoList)
 
 		return todoList
 	}
 
-	fun getFirstTodo(todoList: List<Todo>): Todo {
+	fun getFirstTodo(todoList: MutableList<Todo>): Todo {
+		val tempTodo = todoList.first() { !it.isOverdue() }
+		todoList.removeAll { !it.isOverdue() }
+		todoList.add(tempTodo)
+
 		return if (todoList.none() { !it.isDone() }) {
 			todoList.last()
 		} else {

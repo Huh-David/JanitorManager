@@ -14,7 +14,7 @@ data class Todo(
 ) {
 	private val now = LocalDate(
 		getInstance().get(YEAR),
-		getInstance().get(MONTH),
+		getInstance().get(MONTH)+1,
 		getInstance().get(DAY_OF_MONTH)
 	)
 
@@ -40,8 +40,8 @@ data class Todo(
 
 	override fun toString(): String {
 		val doneText = if (this.isDone()) "✅" else "❌"
-		val overdueText = if (this.isOverdue()) "⌛" else "⏳"
-		return "${this.date} $overdueText $doneText"
+		val overdueText = if (!this.isDone()) (if (this.isOverdue()) "⌛" else "⏳") else ""
+		return "${this.date} $overdueText $doneText".replace("  "," ")
 	}
 
 	override fun hashCode(): Int {

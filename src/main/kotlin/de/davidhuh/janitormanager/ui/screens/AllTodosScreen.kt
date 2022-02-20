@@ -113,7 +113,7 @@ fun allTodosScreen(
 				},
 				onClick2 = {
 					val cleaningObject = cleaningObjectIndexPair.first
-					val todoService = TodoService(cleaningObject)
+					val todoService = TodoService(cleaningObject.address)
 					val todoList = cleaningObject.activityRepoList.find {
 						it.activityType == todo.activity.activityType
 					}?.getAllTodos(cleaningObject)

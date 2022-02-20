@@ -1,8 +1,7 @@
 package de.davidhuh.janitormanager.service
 
-import androidx.compose.ui.text.toLowerCase
 import de.davidhuh.janitormanager.domain.ActivityType
-import de.davidhuh.janitormanager.domain.CleaningObject
+import de.davidhuh.janitormanager.domain.Address
 import de.davidhuh.janitormanager.domain.Todo
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -11,7 +10,7 @@ import java.io.File
 import java.io.IOException
 
 class TodoService(
-	private val cleaningObject: CleaningObject,
+	private val address: Address,
 ) {
 	private fun makeDirectories() {
 		if (!File(DIRPATH).exists()) {
@@ -19,20 +18,29 @@ class TodoService(
 		}
 	}
 
-	private fun getFormattedFilePath(activityType: ActivityType, cleaningObject: CleaningObject): String {
+	private fun getFormattedFilePath(activityType: ActivityType, address: Address): String {
 		val activityTypeString = activityType.toString()
 			.replace(" ", "")
 			.replace(".", "")
-		val cleaningObjectString = cleaningObject.toSortString()
+		val addressString = address.toSortString()
 			.replace(" ", "")
 			.replace(".", "")
 
-		return "$TODOSFILEPATH-$cleaningObjectString-$activityTypeString.json".lowercase()
+		return "$TODOSFILEPATH-$addressString-$activityTypeString.json".lowercase()
+	}
+
+	fun changeAddressOfTodoList(oldAddress: Address, todoList: MutableList<Todo>) {
+		saveTodoList(todoList)
+		removeTodoList(oldAddress, todoList.first().activity.activityType)
+	}
+
+	fun removeTodoList(address: Address, activityType: ActivityType) {
+		File(getFormattedFilePath(activityType, address)).delete()
 	}
 
 	fun readTodoList(activityType: ActivityType): MutableList<Todo> {
 		return try {
-			val text = File(getFormattedFilePath(activityType, cleaningObject)).readText()
+			val text = File(getFormattedFilePath(activityType, address)).readText()
 			Json.decodeFromString<MutableList<Todo>>(text)
 		} catch (_: IOException) {
 			mutableListOf()
@@ -45,6 +53,6 @@ class TodoService(
 		todoList.sortBy { it.date }
 
 		val jsonText = Json.encodeToString(todoList)
-		File(getFormattedFilePath(todoList.first().activity.activityType, cleaningObject)).writeText(jsonText)
+		File(getFormattedFilePath(todoList.first().activity.activityType, address)).writeText(jsonText)
 	}
 }

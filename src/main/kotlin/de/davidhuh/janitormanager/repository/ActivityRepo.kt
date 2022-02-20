@@ -37,7 +37,7 @@ class ActivityRepo(
 			}
 		}
 
-		val todoService = TodoService(cleaningObject)
+		val todoService = TodoService(cleaningObject.address)
 		val savedTodoList = todoService.readTodoList(activityType)
 
 		for (savedTodo in savedTodoList) {

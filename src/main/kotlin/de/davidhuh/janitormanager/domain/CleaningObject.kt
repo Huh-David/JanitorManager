@@ -10,10 +10,20 @@ class CleaningObject(
 	var activityRepoList: MutableList<ActivityRepo>,
 	var cleaningObjectType: CleaningObjectType = CleaningObjectType.HOUSE,
 ) {
+	fun changeAddress(address: Address) {
+		this.address = address
+	}
+
+	fun changeCleaningObjectManagement(cleaningObjectManagement: CleaningObjectManagement) {
+		this.cleaningObjectManagement = cleaningObjectManagement
+	}
+
+	fun changeCleaningObjectType(cleaningObjectType: CleaningObjectType) {
+		this.cleaningObjectType = cleaningObjectType
+	}
+
 	override fun toString(): String = "$cleaningObjectType - $address"
 
 	fun toAlternativeString(): String =
-		"$cleaningObjectType - ${address.city} ${address.zipcode} - ${address.street} ${address.house_number}"
-
-	fun toSortString(): String = "${address.city} ${address.zipcode} ${address.street} ${address.house_number}"
+		"$cleaningObjectType - ${address.city} ${address.zipcode} - ${address.street} ${address.houseNumber}"
 }

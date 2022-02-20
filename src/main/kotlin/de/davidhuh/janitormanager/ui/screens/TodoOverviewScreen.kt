@@ -31,7 +31,7 @@ fun todoOverviewScreen(
 		Column() {
 			val activityIndex = navController.activityIndex
 			val todoList: MutableList<Todo> = cleaningObject.activityRepoList[activityIndex].getAllTodos(cleaningObject)
-			val todoService = TodoService(cleaningObject)
+			val todoService = TodoService(cleaningObject.address)
 
 			todoList.forEachIndexed { index, todo ->
 

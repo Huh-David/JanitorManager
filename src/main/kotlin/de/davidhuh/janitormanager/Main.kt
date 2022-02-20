@@ -27,7 +27,7 @@ fun app() {
 	}
 
 	val cleaningObjectList = cleaningObjectService.readCleaningObjectList().sortedBy {
-		it.toSortString()
+		it.address.toSortString()
 	} as MutableList<CleaningObject>
 
 	val screens = Screen.values().toList()

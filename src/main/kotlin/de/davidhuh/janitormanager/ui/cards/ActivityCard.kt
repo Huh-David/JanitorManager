@@ -72,7 +72,7 @@ fun activityRepoCard(
 	val todoList = activityRepo.getAllTodos(cleaningObject)
 	val firstTodo: Todo = activityRepo.getFirstTodo(todoList)
 	val todoText: MutableState<String> = remember { mutableStateOf("$firstTodo") }
-	val todoService = TodoService(cleaningObject)
+	val todoService = TodoService(cleaningObject.address)
 	todoOverviewRow(
 		"${activityRepo.activityType}",
 		text2 = todoText.value,

@@ -5,7 +5,8 @@ class Vehicle(
 	val brand: String,
 	val model: String,
 	val hasLoadingArea: Boolean = false,
-	private var kilometers: Float,
+	val lastUsedBy: Employee?,
+	var kilometers: Float,
 	val fuelType: FuelType,
 ) {
 	fun addKilometers(kilometers: Float) {

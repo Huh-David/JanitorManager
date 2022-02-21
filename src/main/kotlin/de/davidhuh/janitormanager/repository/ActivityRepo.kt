@@ -15,7 +15,9 @@ class ActivityRepo(
 	}
 
 	private fun checkActivityExistence(activity: Activity): Boolean {
-		return !activityList.none { it.startDate == activity.startDate && it.intervalInDays == activity.intervalInDays }
+		return !activityList.none {
+			it.startDate == activity.startDate && it.intervalInDays == activity.intervalInDays
+		}
 	}
 
 	fun addActivity(activity: Activity): Boolean {

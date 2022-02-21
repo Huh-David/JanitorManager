@@ -5,9 +5,10 @@ class Vehicle(
 	val brand: String,
 	val model: String,
 	val hasLoadingArea: Boolean = false,
-	val lastUsedBy: Employee?,
+	var lastUsedBy: Employee?,
+	var currentlyUsed: Boolean = false,
 	var kilometers: Float,
-	val fuelType: FuelType,
+	var fuelType: FuelType,
 ) {
 	fun addKilometers(kilometers: Float) {
 		this.kilometers.plus(kilometers)
@@ -15,6 +16,15 @@ class Vehicle(
 
 	fun subtractKilometers(kilometers: Float) {
 		this.kilometers.minus(kilometers)
+	}
+
+	fun changeUser(employee: Employee) {
+		this.lastUsedBy = employee
+		this.currentlyUsed = true
+	}
+
+	fun changeFuelType(fuelType: FuelType) {
+		this.fuelType = fuelType
 	}
 
 	enum class FuelType() {

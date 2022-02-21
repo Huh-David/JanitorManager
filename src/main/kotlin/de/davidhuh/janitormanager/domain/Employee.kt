@@ -13,4 +13,5 @@ class Employee(
 	val surName: String,
 	val registrationDate: LocalDate
 ) {
+
 }

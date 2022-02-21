@@ -20,4 +20,12 @@ class VehicleRepo(private val carpool: Carpool) {
 	fun getAllVehiclesLastUsedBy(employee: Employee?): List<Vehicle> {
 		return this.carpool.vehicles.filter { it.lastUsedBy == employee }
 	}
+
+	fun getAllVehiclesCurrentlyUsed(negate: Boolean = false): List<Vehicle> {
+		return if (negate) {
+			this.carpool.vehicles.filter { !it.currentlyUsed }
+		} else {
+			this.carpool.vehicles.filter { it.currentlyUsed }
+		}
+	}
 }

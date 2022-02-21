@@ -9,7 +9,12 @@ data class Activity(
 	val startDate: LocalDate,
 	val intervalInDays: Int, //DatePeriod
 	val activityType: ActivityType,
+	val activityAssignmentList: MutableList<ActivityAssignment> = mutableListOf(),
 ) {
+	fun addActivityAssignment(assignment: ActivityAssignment) {
+		this.activityAssignmentList.add(assignment)
+	}
+
 	override fun toString(): String {
 		return "$activityType - $startDate - $intervalInDays"
 	}

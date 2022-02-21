@@ -8,13 +8,12 @@ import de.davidhuh.janitormanager.service.TodoService
 class ActivityRepo(
 	var activityType: ActivityType,
 	var activityList: MutableList<Activity>,
-	val activityRepoAssignmentList: MutableList<ActivityRepoAssignment> = mutableListOf<ActivityRepoAssignment>(),
 ) {
-	private fun checkCompatibility(activity: Activity): Boolean {
+	fun checkCompatibility(activity: Activity): Boolean {
 		return activity.activityType == activityType
 	}
 
-	private fun checkActivityExistence(activity: Activity): Boolean {
+	fun checkActivityExistence(activity: Activity): Boolean {
 		return !activityList.none {
 			it.startDate == activity.startDate && it.intervalInDays == activity.intervalInDays
 		}
@@ -34,9 +33,8 @@ class ActivityRepo(
 		val todoList = mutableListOf<Todo>()
 
 		for (activity in activityList) {
-			for (todo in activity.todoList) {
-				todoList.add(todo)
-			}
+			val todoRepo = TodoRepo(activity)
+			todoList.addAll(todoRepo.getTodos())
 		}
 
 		val todoService = TodoService(cleaningObject.address)
@@ -55,6 +53,7 @@ class ActivityRepo(
 
 		todoList.sortBy { it.date }
 
+		// only one to-do which is not overdue and not done should be present
 		val firstNotOverdueTodo = todoList.first { !it.isOverdue() && !it.isDone() }
 		todoList.removeAll { !it.isOverdue() && !it.isDone() }
 		todoList.add(firstNotOverdueTodo)

@@ -1,4 +1,5 @@
 package de.davidhuh.janitormanager.domain
+
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -7,8 +8,12 @@ data class CleaningObjectManagement(
 	val lastName: String,
 	val phone: String,
 	val email: String,
-	val address: Address,
+	var address: Address,
 ) {
+	fun changeAddress(newAddress: Address) {
+		this.address = newAddress
+	}
+
 	override fun toString(): String {
 		return "$firstName $lastName - $address $email $phone"
 	}

@@ -6,12 +6,14 @@ import kotlinx.serialization.Serializable
 import java.util.UUID
 
 @Serializable
-class Employee(
+open class Employee(
 	@Serializable(with = HelperService.UUIDSerializer::class)
 	val employeeId: UUID,
 	val preName: String,
 	val surName: String,
-	val registrationDate: LocalDate
+	val registrationDate: LocalDate,
 ) {
-
+	override fun toString(): String {
+		return "Employee $preName $surName since ${registrationDate.toString()}\n${employeeId.toString()}"
+	}
 }

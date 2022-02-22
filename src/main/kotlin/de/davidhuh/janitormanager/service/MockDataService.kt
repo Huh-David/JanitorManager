@@ -50,7 +50,11 @@ class MockDataService() {
 	}
 
 	private fun generateCleaningObject(): CleaningObject {
-		val activityTypeNames = mutableListOf<String>("Clean stairs", "Cut the lawn", "Bring out garbage")
+		val activityTypeNames = mutableListOf<String>(
+			"Clean stairs",
+			"Cut the lawn",
+			"Bring out garbage"
+		)
 
 		val activityRepoList = mutableListOf<ActivityRepo>()
 		val cleaningObjectType = CleaningObjectType.values().random()
@@ -89,6 +93,28 @@ class MockDataService() {
 		val fullName = generateName()
 
 		return Employee(
+			employeeId = UUID.randomUUID(),
+			preName = fullName.first,
+			surName = fullName.second,
+			registrationDate = generateRandomDate()
+		)
+	}
+
+	fun generateGardener(): Gardener {
+		val fullName = generateName()
+
+		return Gardener(
+			employeeId = UUID.randomUUID(),
+			preName = fullName.first,
+			surName = fullName.second,
+			registrationDate = generateRandomDate()
+		)
+	}
+
+	fun generateCleaningSpecialist(): CleaningSpecialist {
+		val fullName = generateName()
+
+		return CleaningSpecialist(
 			employeeId = UUID.randomUUID(),
 			preName = fullName.first,
 			surName = fullName.second,

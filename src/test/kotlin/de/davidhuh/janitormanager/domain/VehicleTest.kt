@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Assertions.*
 import java.util.*
 
 internal class VehicleTest {
-	private val address = Address("Str.", "2", "12345", "City")
-	private val newAddress = Address("Str.", "3", "12345", "City")
-
 	private val employee = Employee(
 		UUID.randomUUID(),
 		"Test",

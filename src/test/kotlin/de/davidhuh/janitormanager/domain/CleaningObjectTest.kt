@@ -73,18 +73,21 @@ internal class CleaningObjectTest {
 
 	@Test
 	fun changeAddress() {
+		assertEquals(cleaningObject.address, address)
 		cleaningObject.changeAddress(newAddress)
 		assertEquals(cleaningObject.address, newAddress)
 	}
 
 	@Test
 	fun changeCleaningObjectManagement() {
+		assertEquals(cleaningObject.cleaningObjectManagement, cleaningObjectManagement)
 		cleaningObject.changeCleaningObjectManagement(newCleaningObjectManagement)
 		assertEquals(cleaningObject.cleaningObjectManagement, newCleaningObjectManagement)
 	}
 
 	@Test
 	fun changeCleaningObjectType() {
+		assertEquals(cleaningObject.cleaningObjectType, CleaningObjectType.HOUSE)
 		cleaningObject.changeCleaningObjectType(CleaningObjectType.APARTMENT)
 		assertEquals(cleaningObject.cleaningObjectType, CleaningObjectType.APARTMENT)
 	}
@@ -92,5 +95,6 @@ internal class CleaningObjectTest {
 	@Test
 	fun calculateEstimatedCosts() {
 		assertEquals(cleaningObject.calculateEstimatedCosts(space, 1f), 10000f)
+		assertEquals(cleaningObject.calculateEstimatedCosts(space, 10f), 100000f)
 	}
 }

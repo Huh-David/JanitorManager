@@ -11,11 +11,11 @@ class Vehicle(
 	var fuelType: FuelType,
 ) {
 	fun addKilometers(kilometers: Float) {
-		this.kilometers.plus(kilometers)
+		this.kilometers = this.kilometers.plus(kilometers)
 	}
 
 	fun subtractKilometers(kilometers: Float) {
-		this.kilometers.minus(kilometers)
+		this.kilometers = this.kilometers.minus(kilometers)
 	}
 
 	fun changeUser(employee: Employee) {

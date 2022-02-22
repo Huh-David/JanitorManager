@@ -69,11 +69,12 @@ internal class ActivityRepoTest {
 	@Test
 	fun checkActivityExistence() {
 		assert(activityRepo.checkActivityExistence(activity))
+		assert(!activityRepo.checkActivityExistence(activityToAdd))
 	}
 
 	@Test
 	fun addActivity() {
-		activityRepo.addActivity(activityToAdd)
+		assert(activityRepo.addActivity(activityToAdd))
 		assert(activityRepo.checkActivityExistence(activityToAdd))
 	}
 

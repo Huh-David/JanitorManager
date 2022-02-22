@@ -12,7 +12,7 @@ class Carpool(
 		vehicles.add(vehicle)
 	}
 
-	fun removeVehicleToPool(vehicle: Vehicle) {
+	fun removeVehicleFromPool(vehicle: Vehicle) {
 		vehicles.remove(vehicle)
 	}
 }

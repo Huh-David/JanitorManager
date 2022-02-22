@@ -17,7 +17,7 @@ import de.davidhuh.janitormanager.ui.navcontroller.NavController
 
 @Composable
 fun generateActivityList(cleaningObject: CleaningObject, navController: NavController) {
-	cleaningObject.activityRepoList.forEachIndexed { index, activityRepo ->
+	cleaningObject.activityAggregateList.forEachIndexed { index, activityRepo ->
 		activityRepoCard(activityRepo, index, navController)
 	}
 }

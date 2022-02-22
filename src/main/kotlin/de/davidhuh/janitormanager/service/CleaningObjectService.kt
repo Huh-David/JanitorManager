@@ -51,7 +51,7 @@ class CleaningObjectService() {
 		val oldAddress = cleaningObject.address.copy()
 		val todoListsToSave = mutableListOf<MutableList<Todo>>()
 
-		cleaningObject.activityRepoList.forEach() {
+		cleaningObject.activityAggregateList.forEach() {
 			val todoList = it.getAllTodos(cleaningObject)
 			todoListsToSave.add(todoList)
 		}

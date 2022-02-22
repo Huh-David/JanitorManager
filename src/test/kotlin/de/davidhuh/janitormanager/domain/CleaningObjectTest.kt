@@ -1,6 +1,6 @@
 package de.davidhuh.janitormanager.domain
 
-import de.davidhuh.janitormanager.repository.ActivityRepo
+import de.davidhuh.janitormanager.aggregate.ActivityAggregate
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
 
@@ -51,13 +51,13 @@ internal class CleaningObjectTest {
 	)
 
 	private val activityList = mutableListOf<Activity>(activity)
-	private val activityRepo = ActivityRepo(ActivityType("Test", Sector.INDOOR), activityList)
+	private val activityAggregate = ActivityAggregate(ActivityType("Test", Sector.INDOOR), activityList)
 
 
 	private val cleaningObject = CleaningObject(
 		address,
 		cleaningObjectManagement,
-		mutableListOf(activityRepo),
+		mutableListOf(activityAggregate),
 		CleaningObjectType.HOUSE
 	)
 

@@ -1,7 +1,7 @@
 package de.davidhuh.janitormanager.service
 
 import de.davidhuh.janitormanager.domain.*
-import de.davidhuh.janitormanager.repository.ActivityRepo
+import de.davidhuh.janitormanager.aggregate.ActivityAggregate
 import kotlinx.datetime.LocalDate
 import java.util.*
 import kotlin.random.Random
@@ -56,7 +56,7 @@ class MockDataService() {
 			"Bring out garbage"
 		)
 
-		val activityRepoList = mutableListOf<ActivityRepo>()
+		val activityAggregateList = mutableListOf<ActivityAggregate>()
 		val cleaningObjectType = CleaningObjectType.values().random()
 		val cleaningObjectAddress = generateAddress()
 		val cleaningObjectManagement = generateCleaningObjectManagement()
@@ -70,21 +70,21 @@ class MockDataService() {
 			val activity = Activity(startDate, Random.nextInt(1, 365), activityType)
 
 			var added = false
-			for (activityRepo in activityRepoList) {
+			for (activityRepo in activityAggregateList) {
 				if (activityRepo.addActivity(activity)) {
 					added = true
 				}
 			}
 			if (!added) {
-				val activityRepo = ActivityRepo(activityType, mutableListOf(activity))
-				activityRepoList.add(activityRepo)
+				val activityAggregate = ActivityAggregate(activityType, mutableListOf(activity))
+				activityAggregateList.add(activityAggregate)
 			}
 		}
 
 		return CleaningObject(
 			cleaningObjectAddress,
 			cleaningObjectManagement,
-			activityRepoList,
+			activityAggregateList,
 			cleaningObjectType
 		)
 	}

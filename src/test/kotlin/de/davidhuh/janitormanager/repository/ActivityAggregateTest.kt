@@ -1,11 +1,12 @@
 package de.davidhuh.janitormanager.repository
 
+import de.davidhuh.janitormanager.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.domain.*
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
 import java.util.*
 
-internal class ActivityRepoTest {
+internal class ActivityAggregateTest {
 	private val address = Address("Str.", "2", "12345", "City")
 	private val cleaningObjectManagement = CleaningObjectManagement(
 		"Prename",
@@ -49,42 +50,42 @@ internal class ActivityRepoTest {
 	)
 
 	private val activityList = mutableListOf<Activity>(activity)
-	private val activityRepo = ActivityRepo(ActivityType("Test", Sector.INDOOR), activityList)
+	private val activityAggregate = ActivityAggregate(ActivityType("Test", Sector.INDOOR), activityList)
 
 
 	private val cleaningObject = CleaningObject(
 		address,
 		cleaningObjectManagement,
-		mutableListOf(activityRepo),
+		mutableListOf(activityAggregate),
 		CleaningObjectType.HOUSE
 	)
 
 
 	@Test
 	fun checkCompatibility() {
-		assert(activityRepo.checkCompatibility(activity))
-		assert(!activityRepo.checkCompatibility(incompatibleActivity))
+		assert(activityAggregate.checkCompatibility(activity))
+		assert(!activityAggregate.checkCompatibility(incompatibleActivity))
 	}
 
 	@Test
 	fun checkActivityExistence() {
-		assert(activityRepo.checkActivityExistence(activity))
-		assert(!activityRepo.checkActivityExistence(activityToAdd))
+		assert(activityAggregate.checkActivityExistence(activity))
+		assert(!activityAggregate.checkActivityExistence(activityToAdd))
 	}
 
 	@Test
 	fun addActivity() {
-		assert(activityRepo.addActivity(activityToAdd))
-		assert(activityRepo.checkActivityExistence(activityToAdd))
+		assert(activityAggregate.addActivity(activityToAdd))
+		assert(activityAggregate.checkActivityExistence(activityToAdd))
 	}
 
 	@Test
 	fun getAllTodos() {
-		assert(activityRepo.getAllTodos(cleaningObject).size > 0)
+		assert(activityAggregate.getAllTodos(cleaningObject).size > 0)
 	}
 
 	@Test
 	fun getFirstTodo() {
-		assert(activityRepo.getFirstTodo(activityRepo.getAllTodos(cleaningObject)).date == LocalDate(1990, 1, 1))
+		assert(activityAggregate.getFirstTodo(activityAggregate.getAllTodos(cleaningObject)).date == LocalDate(1990, 1, 1))
 	}
 }

@@ -1,13 +1,13 @@
 package de.davidhuh.janitormanager.domain
 
 import kotlinx.serialization.Serializable
-import de.davidhuh.janitormanager.repository.ActivityRepo
+import de.davidhuh.janitormanager.aggregate.ActivityAggregate
 
 @Serializable
 class CleaningObject(
 	var address: Address,
 	var cleaningObjectManagement: CleaningObjectManagement,
-	var activityRepoList: MutableList<ActivityRepo>,
+	var activityAggregateList: MutableList<ActivityAggregate>,
 	var cleaningObjectType: CleaningObjectType = CleaningObjectType.HOUSE,
 ) {
 	fun changeAddress(address: Address) {

@@ -9,7 +9,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.CleaningObject
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 import de.davidhuh.janitormanager.ui.screens.Screen
 
@@ -34,7 +33,7 @@ fun cleaningObjectCard(
 			horizontalArrangement = Arrangement.SpaceBetween
 		) {
 			Text("[$cleaningObjectIndex] ${cleaningObject.toAlternativeString()}")
-			Text("${cleaningObject.activityRepoList.size} Activities")
+			Text("${cleaningObject.activityAggregateList.size} Activities")
 		}
 	}
 }

@@ -1,11 +1,12 @@
-package de.davidhuh.janitormanager.repository
+package de.davidhuh.janitormanager.aggregate
 
 import de.davidhuh.janitormanager.domain.*
+import de.davidhuh.janitormanager.repository.TodoRepo
 import kotlinx.serialization.Serializable
 import de.davidhuh.janitormanager.service.TodoService
 
 @Serializable
-class ActivityRepo(
+class ActivityAggregate(
 	var activityType: ActivityType,
 	var activityList: MutableList<Activity>,
 ) {

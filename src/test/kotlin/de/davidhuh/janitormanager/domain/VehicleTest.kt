@@ -1,6 +1,5 @@
 package de.davidhuh.janitormanager.domain
 
-import de.davidhuh.janitormanager.repository.ActivityRepo
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
 

@@ -1,5 +1,6 @@
 package de.davidhuh.janitormanager.repository
 
+import de.davidhuh.janitormanager.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.domain.*
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
@@ -29,12 +30,12 @@ internal class EmployeeRepoTest {
 	)
 
 	private val activityList = mutableListOf<Activity>(activity)
-	private val activityRepo = ActivityRepo(ActivityType("Test", Sector.SOMEWHERE), activityList)
+	private val activityAggregate = ActivityAggregate(ActivityType("Test", Sector.SOMEWHERE), activityList)
 
-	private val activityRepoList = mutableListOf<ActivityRepo>(activityRepo)
+	private val activityAggregateList = mutableListOf<ActivityAggregate>(activityAggregate)
 
 
-	private val employeeRepo = EmployeeRepo(activityRepoList)
+	private val employeeRepo = EmployeeRepo(activityAggregateList)
 
 	@Test
 	fun getAssignedActivities() {

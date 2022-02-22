@@ -10,9 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.Activity
 import de.davidhuh.janitormanager.domain.Todo
-import de.davidhuh.janitormanager.repository.ActivityRepo
+import de.davidhuh.janitormanager.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.service.TodoService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 import de.davidhuh.janitormanager.ui.screens.Screen
@@ -64,17 +63,17 @@ fun todoOverviewRow(
 
 @Composable
 fun activityRepoCard(
-	activityRepo: ActivityRepo,
+	activityAggregate: ActivityAggregate,
 	index: Int,
 	navController: NavController,
 ) {
 	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
-	val todoList = activityRepo.getAllTodos(cleaningObject)
-	val firstTodo: Todo = activityRepo.getFirstTodo(todoList)
+	val todoList = activityAggregate.getAllTodos(cleaningObject)
+	val firstTodo: Todo = activityAggregate.getFirstTodo(todoList)
 	val todoText: MutableState<String> = remember { mutableStateOf("$firstTodo") }
 	val todoService = TodoService(cleaningObject.address)
 	todoOverviewRow(
-		"${activityRepo.activityType}",
+		"${activityAggregate.activityType}",
 		text2 = todoText.value,
 		onClick1 = {
 			firstTodo.changeStatus()

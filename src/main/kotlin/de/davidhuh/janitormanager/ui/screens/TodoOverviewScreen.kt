@@ -1,10 +1,6 @@
 package de.davidhuh.janitormanager.ui.screens
 
-import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.rememberScrollbarAdapter
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -18,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.Todo
 import de.davidhuh.janitormanager.service.TodoService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
-import org.intellij.lang.annotations.JdkConstants.CalendarMonth
 
 @Composable
 fun todoOverviewScreen(
@@ -30,7 +25,7 @@ fun todoOverviewScreen(
 		Text("[${navController.cleaningObjectIndex}] $cleaningObject")
 		Column() {
 			val activityIndex = navController.activityIndex
-			val todoList: MutableList<Todo> = cleaningObject.activityRepoList[activityIndex].getAllTodos(cleaningObject)
+			val todoList: MutableList<Todo> = cleaningObject.activityAggregateList[activityIndex].getAllTodos(cleaningObject)
 			val todoService = TodoService(cleaningObject.address)
 
 			todoList.forEachIndexed { index, todo ->

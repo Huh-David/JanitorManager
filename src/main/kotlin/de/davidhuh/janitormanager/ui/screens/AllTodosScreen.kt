@@ -1,7 +1,5 @@
 package de.davidhuh.janitormanager.ui.screens
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,7 +12,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.domain.CleaningObject
@@ -83,7 +80,7 @@ fun allTodosScreen(
 		val todoIndexMap = remember { mutableMapOf<Todo, Pair<CleaningObject, Int>>() }
 
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
-			for (activityRepo in cleaningObject.activityRepoList) {
+			for (activityRepo in cleaningObject.activityAggregateList) {
 				activityRepo.getAllTodos(cleaningObject).forEach() { todo ->
 					if (!todo.isDone()) {
 						todoIndexMap[todo] = Pair(cleaningObject, index)
@@ -114,7 +111,7 @@ fun allTodosScreen(
 				onClick2 = {
 					val cleaningObject = cleaningObjectIndexPair.first
 					val todoService = TodoService(cleaningObject.address)
-					val todoList = cleaningObject.activityRepoList.find {
+					val todoList = cleaningObject.activityAggregateList.find {
 						it.activityType == todo.activity.activityType
 					}?.getAllTodos(cleaningObject)
 

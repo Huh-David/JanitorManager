@@ -90,17 +90,14 @@ class MockDataService() {
 	}
 
 	fun generateEmployee(): Employee {
-		val fullName = generateName()
-
-		return Employee(
-			employeeId = UUID.randomUUID(),
-			preName = fullName.first,
-			surName = fullName.second,
-			registrationDate = generateRandomDate()
-		)
+		return if (Random.nextBoolean()) {
+			generateGardener()
+		} else {
+			generateCleaningSpecialist()
+		}
 	}
 
-	fun generateGardener(): Gardener {
+	private fun generateGardener(): Gardener {
 		val fullName = generateName()
 
 		return Gardener(
@@ -111,7 +108,7 @@ class MockDataService() {
 		)
 	}
 
-	fun generateCleaningSpecialist(): CleaningSpecialist {
+	private fun generateCleaningSpecialist(): CleaningSpecialist {
 		val fullName = generateName()
 
 		return CleaningSpecialist(

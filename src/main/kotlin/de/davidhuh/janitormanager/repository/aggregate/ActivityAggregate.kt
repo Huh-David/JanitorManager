@@ -1,6 +1,9 @@
-package de.davidhuh.janitormanager.aggregate
+package de.davidhuh.janitormanager.repository.aggregate
 
-import de.davidhuh.janitormanager.domain.*
+import de.davidhuh.janitormanager.domain.entity.Activity
+import de.davidhuh.janitormanager.domain.entity.CleaningObject
+import de.davidhuh.janitormanager.domain.entity.Todo
+import de.davidhuh.janitormanager.domain.valueobjects.ActivityType
 import de.davidhuh.janitormanager.repository.TodoRepo
 import kotlinx.serialization.Serializable
 import de.davidhuh.janitormanager.service.TodoService

@@ -1,8 +1,8 @@
 package de.davidhuh.janitormanager.service
 
-import de.davidhuh.janitormanager.domain.ActivityType
-import de.davidhuh.janitormanager.domain.Address
-import de.davidhuh.janitormanager.domain.Todo
+import de.davidhuh.janitormanager.domain.valueobjects.ActivityType
+import de.davidhuh.janitormanager.domain.valueobjects.Address
+import de.davidhuh.janitormanager.domain.entity.Todo
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.ui.screens
+package de.davidhuh.janitormanager.ui.views
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.Address
-import de.davidhuh.janitormanager.domain.CleaningObjectManagement
+import de.davidhuh.janitormanager.domain.valueobjects.Address
+import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
 import de.davidhuh.janitormanager.service.CleaningObjectService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 

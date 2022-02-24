@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.saveable.rememberSaveable
-import de.davidhuh.janitormanager.domain.CleaningObject
+import de.davidhuh.janitormanager.domain.entity.CleaningObject
 
 class NavController(
 	private val startDestination: String,
@@ -46,6 +46,6 @@ fun rememberNavController(
 	backStackScreens: MutableSet<String> = mutableSetOf(),
 	cleaningObjectList: MutableList<CleaningObject>,
 
-): MutableState<NavController> = rememberSaveable {
+	): MutableState<NavController> = rememberSaveable {
 	mutableStateOf(NavController(startDestination, backStackScreens, 0, cleaningObjectList, 0))
 }

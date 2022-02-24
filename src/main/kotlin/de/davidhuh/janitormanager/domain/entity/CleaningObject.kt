@@ -1,7 +1,11 @@
-package de.davidhuh.janitormanager.domain
+package de.davidhuh.janitormanager.domain.entity
 
+import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
+import de.davidhuh.janitormanager.domain.valueobjects.Address
+import de.davidhuh.janitormanager.domain.valueobjects.CleaningObjectType
+import de.davidhuh.janitormanager.domain.valueobjects.Space
 import kotlinx.serialization.Serializable
-import de.davidhuh.janitormanager.aggregate.ActivityAggregate
+import de.davidhuh.janitormanager.repository.aggregate.ActivityAggregate
 
 @Serializable
 class CleaningObject(

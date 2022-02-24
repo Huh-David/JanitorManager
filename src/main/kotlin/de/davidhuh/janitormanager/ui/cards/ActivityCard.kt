@@ -10,11 +10,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.Todo
-import de.davidhuh.janitormanager.aggregate.ActivityAggregate
+import de.davidhuh.janitormanager.domain.entity.Todo
+import de.davidhuh.janitormanager.repository.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.service.TodoService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
-import de.davidhuh.janitormanager.ui.screens.Screen
+import de.davidhuh.janitormanager.ui.views.Screen
 
 @Composable
 fun todoOverviewRow(

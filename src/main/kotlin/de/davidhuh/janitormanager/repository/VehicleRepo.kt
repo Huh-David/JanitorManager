@@ -1,8 +1,8 @@
 package de.davidhuh.janitormanager.repository
 
-import de.davidhuh.janitormanager.domain.Carpool
-import de.davidhuh.janitormanager.domain.Employee
-import de.davidhuh.janitormanager.domain.Vehicle
+import de.davidhuh.janitormanager.domain.entity.Carpool
+import de.davidhuh.janitormanager.domain.entity.Employee
+import de.davidhuh.janitormanager.domain.entity.Vehicle
 
 class VehicleRepo(private val carpool: Carpool) {
 	fun getAllVehiclesWithLoadingArea(negate: Boolean = false): List<Vehicle> {

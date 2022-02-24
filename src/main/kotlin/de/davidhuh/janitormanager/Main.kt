@@ -10,10 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import de.davidhuh.janitormanager.domain.*
+import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.service.*
 import de.davidhuh.janitormanager.ui.navcontroller.*
-import de.davidhuh.janitormanager.ui.screens.*
+import de.davidhuh.janitormanager.ui.views.*
 
 
 @Composable

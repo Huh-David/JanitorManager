@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain
+package de.davidhuh.janitormanager.domain.valueobjects
 import kotlinx.serialization.Serializable
 
 @Serializable

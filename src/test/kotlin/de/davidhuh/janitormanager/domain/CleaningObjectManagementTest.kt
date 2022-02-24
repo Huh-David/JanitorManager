@@ -1,5 +1,7 @@
 package de.davidhuh.janitormanager.domain
 
+import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
+import de.davidhuh.janitormanager.domain.valueobjects.Address
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*

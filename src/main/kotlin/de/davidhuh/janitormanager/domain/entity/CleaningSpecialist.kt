@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain
+package de.davidhuh.janitormanager.domain.entity
 
 import de.davidhuh.janitormanager.service.HelperService
 import kotlinx.datetime.LocalDate
@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 import java.util.*
 
 @Serializable
-class Gardener(
+class CleaningSpecialist(
 	@Serializable(with = HelperService.UUIDSerializer::class)
 	override val employeeId: UUID,
 	override val preName: String,
@@ -14,6 +14,6 @@ class Gardener(
 	override val registrationDate: LocalDate,
 ) : Employee {
 	override fun toString(): String {
-		return "Gardener $preName $surName since ${registrationDate.toString()}\n${employeeId.toString()}"
+		return "Cleaning Specialist $preName $surName since ${registrationDate.toString()}\n${employeeId.toString()}"
 	}
 }

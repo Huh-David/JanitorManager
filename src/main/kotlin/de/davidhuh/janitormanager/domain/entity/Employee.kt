@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain
+package de.davidhuh.janitormanager.domain.entity
 
 import kotlinx.datetime.LocalDate
 import java.util.UUID

@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.ui.screens
+package de.davidhuh.janitormanager.ui.views
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*

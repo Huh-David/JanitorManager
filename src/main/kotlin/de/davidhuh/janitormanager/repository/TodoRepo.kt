@@ -1,9 +1,7 @@
 package de.davidhuh.janitormanager.repository
 
-import de.davidhuh.janitormanager.domain.Activity
-import de.davidhuh.janitormanager.domain.CleaningObject
-import de.davidhuh.janitormanager.domain.Todo
-import de.davidhuh.janitormanager.service.TodoService
+import de.davidhuh.janitormanager.domain.entity.Activity
+import de.davidhuh.janitormanager.domain.entity.Todo
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.plus

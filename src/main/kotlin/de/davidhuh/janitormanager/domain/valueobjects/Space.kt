@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain
+package de.davidhuh.janitormanager.domain.valueobjects
 
 data class Space(
 	val width: Float,

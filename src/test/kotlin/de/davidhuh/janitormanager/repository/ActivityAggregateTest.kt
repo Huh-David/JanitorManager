@@ -1,7 +1,12 @@
 package de.davidhuh.janitormanager.repository
 
-import de.davidhuh.janitormanager.aggregate.ActivityAggregate
+import de.davidhuh.janitormanager.repository.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.domain.*
+import de.davidhuh.janitormanager.domain.entity.*
+import de.davidhuh.janitormanager.domain.valueobjects.ActivityType
+import de.davidhuh.janitormanager.domain.valueobjects.Address
+import de.davidhuh.janitormanager.domain.valueobjects.CleaningObjectType
+import de.davidhuh.janitormanager.domain.valueobjects.Sector
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
 import java.util.*

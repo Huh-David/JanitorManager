@@ -1,5 +1,7 @@
 package de.davidhuh.janitormanager.domain
 
+import de.davidhuh.janitormanager.domain.entity.Employee
+import de.davidhuh.janitormanager.domain.entity.Vehicle
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
 

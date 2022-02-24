@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.ui.screens
+package de.davidhuh.janitormanager.ui.views
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.CleaningObject
-import de.davidhuh.janitormanager.domain.Todo
+import de.davidhuh.janitormanager.domain.entity.CleaningObject
+import de.davidhuh.janitormanager.domain.entity.Todo
 import de.davidhuh.janitormanager.service.TodoService
 import de.davidhuh.janitormanager.ui.navcontroller.NavController
 

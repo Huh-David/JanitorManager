@@ -1,6 +1,6 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.valueobjects.Address
+import de.davidhuh.janitormanager.domain.valueobject.Address
 import kotlinx.serialization.Serializable
 
 @Serializable

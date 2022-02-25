@@ -1,6 +1,6 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.service.HelperService
+import de.davidhuh.janitormanager.adapter.service.HelperService
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import java.util.*

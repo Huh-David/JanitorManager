@@ -10,10 +10,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import de.davidhuh.janitormanager.adapter.service.CleaningObjectService
+import de.davidhuh.janitormanager.adapter.service.MockDataService
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.service.*
-import de.davidhuh.janitormanager.ui.navcontroller.*
-import de.davidhuh.janitormanager.ui.views.*
+import de.davidhuh.janitormanager.application.navcontroller.*
+import de.davidhuh.janitormanager.application.views.*
 
 
 @Composable

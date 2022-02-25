@@ -1,7 +1,6 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.entity.Vehicle
-import de.davidhuh.janitormanager.domain.valueobjects.Address
+import de.davidhuh.janitormanager.domain.valueobject.Address
 
 class Carpool(
 	var address: Address,

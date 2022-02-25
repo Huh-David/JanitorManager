@@ -12,13 +12,6 @@ import java.util.*
 
 internal class ActivityAggregateTest {
 	private val address = Address("Str.", "2", "12345", "City")
-	private val cleaningObjectManagement = CleaningObjectManagement(
-		"Prename",
-		"Surname",
-		"12345",
-		"mail@mail.com",
-		address
-	)
 
 	private val employee = Gardener(
 		UUID.randomUUID(),
@@ -56,15 +49,6 @@ internal class ActivityAggregateTest {
 	private val activityList = mutableListOf<Activity>(activity)
 	private val activityAggregate = ActivityAggregate(ActivityType("Test", Sector.INDOOR), activityList)
 
-
-	private val cleaningObject = CleaningObject(
-		address,
-		cleaningObjectManagement,
-		mutableListOf(activityAggregate),
-		CleaningObjectType.HOUSE
-	)
-
-
 	@Test
 	fun checkCompatibility() {
 		assert(activityAggregate.checkCompatibility(activity))
@@ -81,15 +65,5 @@ internal class ActivityAggregateTest {
 	fun addActivity() {
 		assert(activityAggregate.addActivity(activityToAdd))
 		assert(activityAggregate.checkActivityExistence(activityToAdd))
-	}
-
-	@Test
-	fun getAllTodos() {
-		assert(activityAggregate.getAllTodos(cleaningObject).size > 0)
-	}
-
-	@Test
-	fun getFirstTodo() {
-		assert(activityAggregate.getFirstTodo(activityAggregate.getAllTodos(cleaningObject)).date == LocalDate(1990, 1, 1))
 	}
 }

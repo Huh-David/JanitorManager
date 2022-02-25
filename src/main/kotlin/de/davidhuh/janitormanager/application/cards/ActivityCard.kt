@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
 import de.davidhuh.janitormanager.domain.entity.Todo
 import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.adapter.service.TodoService
@@ -68,8 +69,9 @@ fun activityRepoCard(
 	navController: NavController,
 ) {
 	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
-	val todoList = activityAggregate.getAllTodos(cleaningObject)
-	val firstTodo: Todo = activityAggregate.getFirstTodo(todoList)
+	val activityAggregateRepo = ActivityAggregateRepo(activityAggregate, cleaningObject)
+	val todoList = activityAggregateRepo.getAllTodos()
+	val firstTodo: Todo = activityAggregateRepo.getFirstTodo(todoList)
 	val todoText: MutableState<String> = remember { mutableStateOf("$firstTodo") }
 	val todoService = TodoService(cleaningObject.address)
 	todoOverviewRow(

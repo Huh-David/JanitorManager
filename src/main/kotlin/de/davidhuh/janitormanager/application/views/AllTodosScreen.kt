@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.Todo
 import de.davidhuh.janitormanager.adapter.service.TodoService
@@ -80,8 +81,9 @@ fun allTodosScreen(
 		val todoIndexMap = remember { mutableMapOf<Todo, Pair<CleaningObject, Int>>() }
 
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
-			for (activityRepo in cleaningObject.activityAggregateList) {
-				activityRepo.getAllTodos(cleaningObject).forEach() { todo ->
+			for (activityAggregate in cleaningObject.activityAggregateList) {
+				val activityAggregateRepo = ActivityAggregateRepo(activityAggregate, cleaningObject)
+				activityAggregateRepo.getAllTodos().forEach() { todo ->
 					if (!todo.isDone()) {
 						todoIndexMap[todo] = Pair(cleaningObject, index)
 					}
@@ -111,15 +113,14 @@ fun allTodosScreen(
 				onClick2 = {
 					val cleaningObject = cleaningObjectIndexPair.first
 					val todoService = TodoService(cleaningObject.address)
-					val todoList = cleaningObject.activityAggregateList.find {
+					val activityAggregate = cleaningObject.activityAggregateList.find {
 						it.activityType == todo.activity.activityType
-					}?.getAllTodos(cleaningObject)
-
-
-					if (todoList != null) {
-						todoList.find { it == todo }?.changeStatus()
-						todoService.saveTodoList(todoList)
 					}
+					val activityAggregateRepo = ActivityAggregateRepo(activityAggregate!!, cleaningObject)
+					val todoList = activityAggregateRepo.getAllTodos()
+
+					todoList.find { it == todo }?.changeStatus()
+					todoService.saveTodoList(todoList)
 
 					todoText.value = "$todo"
 				},

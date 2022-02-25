@@ -1,5 +1,6 @@
 package de.davidhuh.janitormanager.adapter.service
 
+import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
 import de.davidhuh.janitormanager.domain.valueobject.Address
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
@@ -52,7 +53,8 @@ class CleaningObjectService() {
 		val todoListsToSave = mutableListOf<MutableList<Todo>>()
 
 		cleaningObject.activityAggregateList.forEach() {
-			val todoList = it.getAllTodos(cleaningObject)
+			val activityAggreagteRepo = ActivityAggregateRepo(it, cleaningObject)
+			val todoList = activityAggreagteRepo.getAllTodos()
 			todoListsToSave.add(todoList)
 		}
 

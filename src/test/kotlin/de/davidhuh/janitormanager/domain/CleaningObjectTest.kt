@@ -19,7 +19,7 @@ internal class CleaningObjectTest {
 		address
 	)
 
-	private val employee = Employee(
+	private val employee = Gardener(
 		UUID.randomUUID(),
 		"Test",
 		"Troll",

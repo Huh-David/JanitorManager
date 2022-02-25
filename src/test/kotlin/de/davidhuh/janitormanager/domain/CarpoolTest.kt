@@ -2,6 +2,7 @@ package de.davidhuh.janitormanager.domain
 
 import de.davidhuh.janitormanager.domain.entity.Carpool
 import de.davidhuh.janitormanager.domain.entity.Employee
+import de.davidhuh.janitormanager.domain.entity.Gardener
 import de.davidhuh.janitormanager.domain.entity.Vehicle
 import de.davidhuh.janitormanager.domain.valueobjects.Address
 import kotlinx.datetime.LocalDate
@@ -14,7 +15,7 @@ internal class CarpoolTest {
 	private val address = Address("Str.", "2", "12345", "City")
 	private val newAddress = Address("Str.", "3", "12345", "City")
 
-	private val employee = Employee(
+	private val employee = Gardener(
 		UUID.randomUUID(),
 		"Test",
 		"Troll",

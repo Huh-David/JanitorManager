@@ -5,6 +5,7 @@ import de.davidhuh.janitormanager.domain.*
 import de.davidhuh.janitormanager.domain.entity.Activity
 import de.davidhuh.janitormanager.domain.entity.ActivityAssignment
 import de.davidhuh.janitormanager.domain.entity.Employee
+import de.davidhuh.janitormanager.domain.entity.Gardener
 import de.davidhuh.janitormanager.domain.valueobjects.ActivityType
 import de.davidhuh.janitormanager.domain.valueobjects.Sector
 import kotlinx.datetime.LocalDate
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.Assertions.*
 import java.util.*
 
 internal class EmployeeRepoTest {
-	private val employee = Employee(
+	private val employee = Gardener(
 		UUID.randomUUID(),
 		"Test",
 		"Troll",

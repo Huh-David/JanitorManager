@@ -1,7 +1,9 @@
 package de.davidhuh.janitormanager.domain
 
 import de.davidhuh.janitormanager.domain.entity.ActivityAssignment
+import de.davidhuh.janitormanager.domain.entity.CleaningSpecialist
 import de.davidhuh.janitormanager.domain.entity.Employee
+import de.davidhuh.janitormanager.domain.entity.Gardener
 import de.davidhuh.janitormanager.domain.valueobjects.Address
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
@@ -11,14 +13,14 @@ import java.util.*
 internal class ActivityAssignmentTest {
 	private val address = Address("Str.", "2", "12345", "City")
 
-	private val employee = Employee(
+	private val employee = Gardener(
 		UUID.randomUUID(),
 		"Test",
 		"Troll",
 		LocalDate(2022, 2, 14)
 	)
 
-	private val employee2 = Employee(
+	private val employee2 = CleaningSpecialist(
 		UUID.randomUUID(),
 		"Test",
 		"Troll",

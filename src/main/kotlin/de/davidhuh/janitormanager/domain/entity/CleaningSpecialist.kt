@@ -12,7 +12,7 @@ class CleaningSpecialist(
 	override val preName: String,
 	override val surName: String,
 	override val registrationDate: LocalDate,
-) : Employee {
+) : Employee() {
 	override fun toString(): String {
 		return "Cleaning Specialist $preName $surName since ${registrationDate.toString()}\n${employeeId.toString()}"
 	}

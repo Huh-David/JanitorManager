@@ -1,6 +1,5 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.entity.Employee
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 

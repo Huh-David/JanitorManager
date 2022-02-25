@@ -1,13 +1,13 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.adapter.service.HelperService
+import de.davidhuh.janitormanager.domain.Serializer
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import java.util.*
 
 @Serializable
 class CleaningSpecialist(
-	@Serializable(with = HelperService.UUIDSerializer::class)
+	@Serializable(with = Serializer.UUIDSerializer::class)
 	override val employeeId: UUID,
 	override val preName: String,
 	override val surName: String,

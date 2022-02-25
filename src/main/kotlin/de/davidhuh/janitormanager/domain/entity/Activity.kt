@@ -1,5 +1,6 @@
 package de.davidhuh.janitormanager.domain.entity
 
+import de.davidhuh.janitormanager.domain.entity.ActivityAssignment
 import de.davidhuh.janitormanager.domain.valueobject.ActivityType
 import de.davidhuh.janitormanager.adapter.repository.TodoRepo
 import kotlinx.datetime.LocalDate

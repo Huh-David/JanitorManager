@@ -13,7 +13,6 @@ import androidx.compose.ui.window.application
 import de.davidhuh.janitormanager.adapter.service.CleaningObjectService
 import de.davidhuh.janitormanager.adapter.service.MockDataService
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
-import de.davidhuh.janitormanager.service.*
 import de.davidhuh.janitormanager.application.navcontroller.*
 import de.davidhuh.janitormanager.application.views.*
 

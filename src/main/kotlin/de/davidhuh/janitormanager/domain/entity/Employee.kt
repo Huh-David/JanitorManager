@@ -3,7 +3,7 @@ package de.davidhuh.janitormanager.domain.entity
 import de.davidhuh.janitormanager.domain.Serializer
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
-import java.util.UUID
+import java.util.*
 
 @Serializable
 sealed class Employee {

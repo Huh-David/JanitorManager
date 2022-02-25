@@ -1,11 +1,11 @@
 package de.davidhuh.janitormanager.adapter.service
 
 import de.davidhuh.janitormanager.domain.entity.*
+import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.domain.valueobject.ActivityType
 import de.davidhuh.janitormanager.domain.valueobject.Address
 import de.davidhuh.janitormanager.domain.valueobject.CleaningObjectType
 import de.davidhuh.janitormanager.domain.valueobject.Sector
-import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
 import kotlinx.datetime.LocalDate
 import java.util.*
 import kotlin.random.Random

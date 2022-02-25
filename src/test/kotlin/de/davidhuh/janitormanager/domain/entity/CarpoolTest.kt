@@ -1,13 +1,10 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.entity.Carpool
-import de.davidhuh.janitormanager.domain.entity.Gardener
-import de.davidhuh.janitormanager.domain.entity.Vehicle
 import de.davidhuh.janitormanager.domain.valueobject.Address
 import kotlinx.datetime.LocalDate
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import java.util.*
 
 internal class CarpoolTest {

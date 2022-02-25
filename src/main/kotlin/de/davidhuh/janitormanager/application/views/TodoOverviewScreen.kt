@@ -1,6 +1,8 @@
 package de.davidhuh.janitormanager.application.views
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -12,9 +14,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
-import de.davidhuh.janitormanager.domain.entity.Todo
 import de.davidhuh.janitormanager.adapter.service.TodoService
 import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.domain.entity.Todo
 
 @Composable
 fun todoOverviewScreen(

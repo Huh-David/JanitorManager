@@ -15,10 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
-import de.davidhuh.janitormanager.domain.entity.CleaningObject
-import de.davidhuh.janitormanager.domain.entity.Todo
 import de.davidhuh.janitormanager.adapter.service.TodoService
 import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.domain.entity.CleaningObject
+import de.davidhuh.janitormanager.domain.entity.Todo
 
 @Composable
 fun todoOverviewRow(

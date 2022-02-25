@@ -1,12 +1,10 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.entity.ActivityAssignment
-import de.davidhuh.janitormanager.domain.entity.CleaningSpecialist
-import de.davidhuh.janitormanager.domain.entity.Gardener
 import de.davidhuh.janitormanager.domain.valueobject.Address
 import kotlinx.datetime.LocalDate
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.*
 import java.util.*
 
 internal class ActivityAssignmentTest {

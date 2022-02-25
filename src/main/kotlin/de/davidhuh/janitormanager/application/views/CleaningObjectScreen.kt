@@ -2,7 +2,9 @@ package de.davidhuh.janitormanager.application.views
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -11,9 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.application.cards.activityRepoCard
 import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.domain.entity.CleaningObject
 
 @Composable
 fun generateActivityList(cleaningObject: CleaningObject, navController: NavController) {

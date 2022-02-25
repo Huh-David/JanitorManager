@@ -1,8 +1,8 @@
 package de.davidhuh.janitormanager.adapter.repository
 
-import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
 import de.davidhuh.janitormanager.domain.entity.Activity
 import de.davidhuh.janitormanager.domain.entity.Employee
+import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
 
 class EmployeeRepo(
 	var activityAggregateList: List<ActivityAggregate>,

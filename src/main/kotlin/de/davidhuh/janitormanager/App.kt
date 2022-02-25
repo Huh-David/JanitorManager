@@ -1,7 +1,9 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,9 +14,12 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import de.davidhuh.janitormanager.adapter.service.CleaningObjectService
 import de.davidhuh.janitormanager.adapter.service.MockDataService
-import de.davidhuh.janitormanager.domain.entity.CleaningObject
-import de.davidhuh.janitormanager.application.navcontroller.*
+import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.application.navcontroller.NavigationHost
+import de.davidhuh.janitormanager.application.navcontroller.composable
+import de.davidhuh.janitormanager.application.navcontroller.rememberNavController
 import de.davidhuh.janitormanager.application.views.*
+import de.davidhuh.janitormanager.domain.entity.CleaningObject
 
 
 @Composable

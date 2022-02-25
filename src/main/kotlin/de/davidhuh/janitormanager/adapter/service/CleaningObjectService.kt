@@ -1,10 +1,10 @@
 package de.davidhuh.janitormanager.adapter.service
 
 import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
-import de.davidhuh.janitormanager.domain.valueobject.Address
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
 import de.davidhuh.janitormanager.domain.entity.Todo
+import de.davidhuh.janitormanager.domain.valueobject.Address
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

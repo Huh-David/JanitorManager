@@ -1,11 +1,9 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.entity.*
 import de.davidhuh.janitormanager.domain.valueobject.ActivityType
 import de.davidhuh.janitormanager.domain.valueobject.Sector
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
-
 import java.util.*
 
 internal class TodoTest {

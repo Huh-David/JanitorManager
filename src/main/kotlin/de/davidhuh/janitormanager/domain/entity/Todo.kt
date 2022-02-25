@@ -3,8 +3,8 @@ package de.davidhuh.janitormanager.domain.entity
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.daysUntil
 import kotlinx.serialization.Serializable
+import java.util.*
 import java.util.Calendar.*
-import java.util.Objects
 
 @Serializable
 data class Todo(

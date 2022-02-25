@@ -18,10 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.domain.valueobject.Address
-import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
 import de.davidhuh.janitormanager.adapter.service.CleaningObjectService
 import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
+import de.davidhuh.janitormanager.domain.valueobject.Address
 
 @Composable
 fun generateAddressChangeFields(

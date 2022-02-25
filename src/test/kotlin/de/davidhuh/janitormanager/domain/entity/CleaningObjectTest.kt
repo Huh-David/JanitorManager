@@ -1,12 +1,10 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.entity.*
-import de.davidhuh.janitormanager.domain.valueobject.*
 import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
+import de.davidhuh.janitormanager.domain.valueobject.*
 import kotlinx.datetime.LocalDate
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import java.util.*
 
 internal class CleaningObjectTest {

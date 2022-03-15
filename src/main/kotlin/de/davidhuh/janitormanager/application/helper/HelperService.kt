@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.application
+package de.davidhuh.janitormanager.application.helper
 
 object HelperService {
 	fun getDirPath() = ".data/"

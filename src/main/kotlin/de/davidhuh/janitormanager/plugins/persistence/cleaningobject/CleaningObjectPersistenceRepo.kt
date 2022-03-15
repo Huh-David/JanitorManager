@@ -1,6 +1,6 @@
 package de.davidhuh.janitormanager.plugins.persistence.cleaningobject
 
-import de.davidhuh.janitormanager.application.HelperService
+import de.davidhuh.janitormanager.application.helper.HelperService
 import de.davidhuh.janitormanager.application.activity.ActivityAggregateService
 import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObjectRepo

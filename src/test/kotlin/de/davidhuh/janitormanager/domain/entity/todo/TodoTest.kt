@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain.entity
+package de.davidhuh.janitormanager.domain.entity.todo
 
 import de.davidhuh.janitormanager.domain.entity.activity.Activity
 import de.davidhuh.janitormanager.domain.entity.activityassignment.ActivityAssignment

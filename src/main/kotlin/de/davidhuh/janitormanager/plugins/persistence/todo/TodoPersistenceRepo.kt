@@ -1,6 +1,6 @@
 package de.davidhuh.janitormanager.plugins.persistence.todo
 
-import de.davidhuh.janitormanager.application.HelperService
+import de.davidhuh.janitormanager.application.helper.HelperService
 import de.davidhuh.janitormanager.domain.entity.activity.ActivityType
 import de.davidhuh.janitormanager.domain.entity.todo.Todo
 import de.davidhuh.janitormanager.domain.entity.todo.TodoRepo

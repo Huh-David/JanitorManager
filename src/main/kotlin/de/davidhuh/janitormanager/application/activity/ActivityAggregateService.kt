@@ -1,16 +1,16 @@
 package de.davidhuh.janitormanager.application.activity
 
-import de.davidhuh.janitormanager.plugins.persistence.todo.TodoPersistenceRepo
 import de.davidhuh.janitormanager.application.todo.TodoService
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityAggregate
 import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.todo.Todo
-import de.davidhuh.janitormanager.domain.entity.activity.ActivityAggregate
+import de.davidhuh.janitormanager.domain.entity.todo.TodoRepo
 
 class ActivityAggregateService(
 	val activityAggregate: ActivityAggregate,
 	val cleaningObject: CleaningObject,
 ) {
-	fun getAllTodos(todoRepo: TodoPersistenceRepo): MutableList<Todo> {
+	fun getAllTodos(todoRepo: TodoRepo): MutableList<Todo> {
 		val todoList = mutableListOf<Todo>()
 
 		for (activity in activityAggregate.activityList) {

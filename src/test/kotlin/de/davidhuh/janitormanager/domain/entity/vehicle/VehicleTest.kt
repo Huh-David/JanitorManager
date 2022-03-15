@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain.entity
+package de.davidhuh.janitormanager.domain.entity.vehicle
 
 import de.davidhuh.janitormanager.domain.entity.employee.CleaningSpecialist
 import de.davidhuh.janitormanager.domain.entity.employee.Gardener

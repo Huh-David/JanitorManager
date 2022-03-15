@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain.entity
+package de.davidhuh.janitormanager.domain.entity.cleaningobjectmanagement
 
 import de.davidhuh.janitormanager.domain.entity.cleaningobjectmanagement.CleaningObjectManagement
 import de.davidhuh.janitormanager.domain.valueobject.address.Address

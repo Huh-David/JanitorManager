@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.domain.entity.aggregate
+package de.davidhuh.janitormanager.domain.entity.activity
 
 import de.davidhuh.janitormanager.domain.entity.activity.Activity
 import de.davidhuh.janitormanager.domain.entity.activity.ActivityAggregate

@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import de.davidhuh.janitormanager.plugins.persistence.cleaningobject.CleaningObjectPersistenceRepo
-import de.davidhuh.janitormanager.application.MockDataService
+import de.davidhuh.janitormanager.application.helper.MockDataService
 import de.davidhuh.janitormanager.plugins.ui.navcontroller.NavController
 import de.davidhuh.janitormanager.plugins.ui.navcontroller.NavigationHost
 import de.davidhuh.janitormanager.plugins.ui.navcontroller.composable

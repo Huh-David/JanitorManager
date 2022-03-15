@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.adapter
+package de.davidhuh.janitormanager.application.vehicle
 
 import de.davidhuh.janitormanager.application.vehicle.VehicleService
 import de.davidhuh.janitormanager.domain.entity.carpool.Carpool

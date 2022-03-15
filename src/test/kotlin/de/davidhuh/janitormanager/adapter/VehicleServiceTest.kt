@@ -1,5 +1,6 @@
-package de.davidhuh.janitormanager.adapter.repository
+package de.davidhuh.janitormanager.adapter
 
+import de.davidhuh.janitormanager.application.VehicleService
 import de.davidhuh.janitormanager.domain.entity.Carpool
 import de.davidhuh.janitormanager.domain.entity.CleaningSpecialist
 import de.davidhuh.janitormanager.domain.entity.Gardener
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.util.*
 
-internal class VehicleRepoTest {
+internal class VehicleServiceTest {
 
 	private val address = Address("Str.", "2", "12345", "City")
 
@@ -44,32 +45,32 @@ internal class VehicleRepoTest {
 		mutableListOf(vehicle)
 	)
 
-	private val vehicleRepo = VehicleRepo(
+	private val vehicleService = VehicleService(
 		carpool
 	)
 
 
 	@Test
 	fun getAllVehiclesWithLoadingArea() {
-		assertEquals(vehicleRepo.getAllVehiclesWithLoadingArea().size, 0)
-		assertEquals(vehicleRepo.getAllVehiclesWithLoadingArea(true).size, 1)
+		assertEquals(vehicleService.getAllVehiclesWithLoadingArea().size, 0)
+		assertEquals(vehicleService.getAllVehiclesWithLoadingArea(true).size, 1)
 	}
 
 	@Test
 	fun getAllVehiclesWithMoreThan() {
-		assertEquals(vehicleRepo.getAllVehiclesWithMoreThan(100000f).size, 1)
-		assertEquals(vehicleRepo.getAllVehiclesWithMoreThan(1000000f).size, 0)
+		assertEquals(vehicleService.getAllVehiclesWithMoreThan(100000f).size, 1)
+		assertEquals(vehicleService.getAllVehiclesWithMoreThan(1000000f).size, 0)
 	}
 
 	@Test
 	fun getAllVehiclesLastUsedBy() {
-		assertEquals(vehicleRepo.getAllVehiclesLastUsedBy(employee).size, 1)
-		assertEquals(vehicleRepo.getAllVehiclesLastUsedBy(employee2).size, 0)
+		assertEquals(vehicleService.getAllVehiclesLastUsedBy(employee).size, 1)
+		assertEquals(vehicleService.getAllVehiclesLastUsedBy(employee2).size, 0)
 	}
 
 	@Test
 	fun getAllVehiclesCurrentlyUsed() {
-		assertEquals(vehicleRepo.getAllVehiclesCurrentlyUsed().size, 1)
-		assertEquals(vehicleRepo.getAllVehiclesCurrentlyUsed(true).size, 0)
+		assertEquals(vehicleService.getAllVehiclesCurrentlyUsed().size, 1)
+		assertEquals(vehicleService.getAllVehiclesCurrentlyUsed(true).size, 0)
 	}
 }

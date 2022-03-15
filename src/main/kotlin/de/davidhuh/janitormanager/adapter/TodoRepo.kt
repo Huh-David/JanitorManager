@@ -1,5 +1,6 @@
-package de.davidhuh.janitormanager.adapter.service
+package de.davidhuh.janitormanager.adapter
 
+import de.davidhuh.janitormanager.application.HelperService
 import de.davidhuh.janitormanager.domain.entity.Todo
 import de.davidhuh.janitormanager.domain.valueobject.ActivityType
 import de.davidhuh.janitormanager.domain.valueobject.Address
@@ -9,7 +10,7 @@ import kotlinx.serialization.json.Json
 import java.io.File
 import java.io.IOException
 
-class TodoService(
+class TodoRepo(
 	private val address: Address,
 ) {
 	private fun makeDirectories() {

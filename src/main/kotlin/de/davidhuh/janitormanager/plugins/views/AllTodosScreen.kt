@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
-import de.davidhuh.janitormanager.adapter.service.TodoService
+import de.davidhuh.janitormanager.application.ActivityAggregateService
+import de.davidhuh.janitormanager.adapter.TodoRepo
 import de.davidhuh.janitormanager.plugins.navcontroller.NavController
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.Todo
@@ -82,8 +82,8 @@ fun allTodosScreen(
 
 		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
 			for (activityAggregate in cleaningObject.activityAggregateList) {
-				val activityAggregateRepo = ActivityAggregateRepo(activityAggregate, cleaningObject)
-				activityAggregateRepo.getAllTodos().forEach() { todo ->
+				val activityAggregateService = ActivityAggregateService(activityAggregate, cleaningObject)
+				activityAggregateService.getAllTodos().forEach() { todo ->
 					if (!todo.isDone()) {
 						todoIndexMap[todo] = Pair(cleaningObject, index)
 					}
@@ -112,15 +112,15 @@ fun allTodosScreen(
 				},
 				onClick2 = {
 					val cleaningObject = cleaningObjectIndexPair.first
-					val todoService = TodoService(cleaningObject.address)
+					val todoRepo = TodoRepo(cleaningObject.address)
 					val activityAggregate = cleaningObject.activityAggregateList.find {
 						it.activityType == todo.activity.activityType
 					}
-					val activityAggregateRepo = ActivityAggregateRepo(activityAggregate!!, cleaningObject)
-					val todoList = activityAggregateRepo.getAllTodos()
+					val activityAggregateService = ActivityAggregateService(activityAggregate!!, cleaningObject)
+					val todoList = activityAggregateService.getAllTodos()
 
 					todoList.find { it == todo }?.changeStatus()
-					todoService.saveTodoList(todoList)
+					todoRepo.saveTodoList(todoList)
 
 					todoText.value = "$todo"
 				},

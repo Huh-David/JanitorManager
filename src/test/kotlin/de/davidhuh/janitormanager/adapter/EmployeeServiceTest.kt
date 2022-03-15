@@ -1,5 +1,6 @@
-package de.davidhuh.janitormanager.adapter.repository
+package de.davidhuh.janitormanager.adapter
 
+import de.davidhuh.janitormanager.application.EmployeeService
 import de.davidhuh.janitormanager.domain.entity.Activity
 import de.davidhuh.janitormanager.domain.entity.ActivityAssignment
 import de.davidhuh.janitormanager.domain.entity.Gardener
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.util.*
 
-internal class EmployeeRepoTest {
+internal class EmployeeServiceTest {
 	private val employee = Gardener(
 		UUID.randomUUID(),
 		"Test",
@@ -38,10 +39,10 @@ internal class EmployeeRepoTest {
 	private val activityAggregateList = mutableListOf<ActivityAggregate>(activityAggregate)
 
 
-	private val employeeRepo = EmployeeRepo(activityAggregateList)
+	private val employeeService = EmployeeService(activityAggregateList)
 
 	@Test
 	fun getAssignedActivities() {
-		assertEquals(activityList, employeeRepo.getAssignedActivities(employee))
+		assertEquals(activityList, employeeService.getAssignedActivities(employee))
 	}
 }

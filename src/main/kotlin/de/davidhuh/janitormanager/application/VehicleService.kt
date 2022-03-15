@@ -1,10 +1,10 @@
-package de.davidhuh.janitormanager.adapter.repository
+package de.davidhuh.janitormanager.application
 
 import de.davidhuh.janitormanager.domain.entity.Carpool
 import de.davidhuh.janitormanager.domain.entity.Employee
 import de.davidhuh.janitormanager.domain.entity.Vehicle
 
-class VehicleRepo(private val carpool: Carpool) {
+class VehicleService(private val carpool: Carpool) {
 	fun getAllVehiclesWithLoadingArea(negate: Boolean = false): List<Vehicle> {
 		return if (negate) {
 			this.carpool.vehicles.filter { !it.hasLoadingArea }

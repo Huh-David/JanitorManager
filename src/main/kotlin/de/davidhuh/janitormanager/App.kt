@@ -12,8 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import de.davidhuh.janitormanager.adapter.service.CleaningObjectService
-import de.davidhuh.janitormanager.adapter.service.MockDataService
+import de.davidhuh.janitormanager.adapter.CleaningObjectRepo
+import de.davidhuh.janitormanager.application.MockDataService
 import de.davidhuh.janitormanager.plugins.navcontroller.NavController
 import de.davidhuh.janitormanager.plugins.navcontroller.NavigationHost
 import de.davidhuh.janitormanager.plugins.navcontroller.composable
@@ -25,14 +25,14 @@ import de.davidhuh.janitormanager.domain.entity.CleaningObject
 @Composable
 @Preview
 fun app() {
-	val cleaningObjectService = CleaningObjectService()
+	val cleaningObjectRepo = CleaningObjectRepo()
 
-	if (!cleaningObjectService.checkIfCleaningObjectsExist()) {
+	if (!cleaningObjectRepo.checkIfCleaningObjectsExist()) {
 		val mockDataService = MockDataService()
-		cleaningObjectService.saveCleaningObjectList(mockDataService.generateCleaningObjects(amount = 4))
+		cleaningObjectRepo.saveCleaningObjectList(mockDataService.generateCleaningObjects(amount = 4))
 	}
 
-	val cleaningObjectList = cleaningObjectService.readCleaningObjectList().sortedBy {
+	val cleaningObjectList = cleaningObjectRepo.readCleaningObjectList().sortedBy {
 		it.address.toSortString()
 	} as MutableList<CleaningObject>
 

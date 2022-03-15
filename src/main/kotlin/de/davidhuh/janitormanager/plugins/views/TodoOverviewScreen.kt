@@ -13,8 +13,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
-import de.davidhuh.janitormanager.adapter.service.TodoService
+import de.davidhuh.janitormanager.application.ActivityAggregateService
+import de.davidhuh.janitormanager.adapter.TodoRepo
 import de.davidhuh.janitormanager.plugins.navcontroller.NavController
 import de.davidhuh.janitormanager.domain.entity.Todo
 
@@ -28,9 +28,9 @@ fun todoOverviewScreen(
 		Text("[${navController.cleaningObjectIndex}] $cleaningObject")
 		Column() {
 			val activityIndex = navController.activityIndex
-			val activityAggregateRepo = ActivityAggregateRepo(cleaningObject.activityAggregateList[activityIndex], cleaningObject)
-			val todoList: MutableList<Todo> = activityAggregateRepo.getAllTodos()
-			val todoService = TodoService(cleaningObject.address)
+			val activityAggregateService = ActivityAggregateService(cleaningObject.activityAggregateList[activityIndex], cleaningObject)
+			val todoList: MutableList<Todo> = activityAggregateService.getAllTodos()
+			val todoRepo = TodoRepo(cleaningObject.address)
 
 			todoList.forEachIndexed { index, todo ->
 
@@ -41,7 +41,7 @@ fun todoOverviewScreen(
 					modifier = Modifier.padding(4.dp),
 					onClick = {
 						todo.changeStatus()
-						todoService.saveTodoList(todoList)
+						todoRepo.saveTodoList(todoList)
 						text.value = "$todo"
 					}
 				) {

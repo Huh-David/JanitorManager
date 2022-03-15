@@ -1,10 +1,10 @@
-package de.davidhuh.janitormanager.adapter.repository
+package de.davidhuh.janitormanager.application
 
 import de.davidhuh.janitormanager.domain.entity.Activity
 import de.davidhuh.janitormanager.domain.entity.Todo
 
 
-class TodoRepo(var activity: Activity) {
+class TodoService(var activity: Activity) {
 	fun getTodos(): MutableList<Todo> {
 		val todoList = activity.todoList
 		todoList.sortBy { it.date }

@@ -12,8 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
-import de.davidhuh.janitormanager.adapter.service.TodoService
+import de.davidhuh.janitormanager.application.ActivityAggregateService
+import de.davidhuh.janitormanager.adapter.TodoRepo
 import de.davidhuh.janitormanager.plugins.navcontroller.NavController
 import de.davidhuh.janitormanager.plugins.views.Screen
 import de.davidhuh.janitormanager.domain.entity.Todo
@@ -71,17 +71,17 @@ fun activityRepoCard(
 	navController: NavController,
 ) {
 	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
-	val activityAggregateRepo = ActivityAggregateRepo(activityAggregate, cleaningObject)
-	val todoList = activityAggregateRepo.getAllTodos()
-	val firstTodo: Todo = activityAggregateRepo.getFirstTodo(todoList)
+	val activityAggregateService = ActivityAggregateService(activityAggregate, cleaningObject)
+	val todoList = activityAggregateService.getAllTodos()
+	val firstTodo: Todo = activityAggregateService.getFirstTodo(todoList)
 	val todoText: MutableState<String> = remember { mutableStateOf("$firstTodo") }
-	val todoService = TodoService(cleaningObject.address)
+	val todoRepo = TodoRepo(cleaningObject.address)
 	todoOverviewRow(
 		"${activityAggregate.activityType}",
 		text2 = todoText.value,
 		onClick1 = {
 			firstTodo.changeStatus()
-			todoService.saveTodoList(todoList)
+			todoRepo.saveTodoList(todoList)
 			todoText.value = "$firstTodo"
 		},
 		"Todo Overview",

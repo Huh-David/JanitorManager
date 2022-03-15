@@ -1,10 +1,10 @@
-package de.davidhuh.janitormanager.adapter.repository
+package de.davidhuh.janitormanager.application
 
 import de.davidhuh.janitormanager.domain.entity.Activity
 import de.davidhuh.janitormanager.domain.entity.Employee
 import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
 
-class EmployeeRepo(
+class EmployeeService(
 	var activityAggregateList: List<ActivityAggregate>,
 ) {
 	fun getAssignedActivities(employee: Employee): List<Activity> {

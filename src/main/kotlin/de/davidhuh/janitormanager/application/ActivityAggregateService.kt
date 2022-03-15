@@ -1,11 +1,11 @@
-package de.davidhuh.janitormanager.adapter.repository
+package de.davidhuh.janitormanager.application
 
-import de.davidhuh.janitormanager.adapter.service.TodoService
+import de.davidhuh.janitormanager.adapter.TodoRepo
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.Todo
 import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
 
-class ActivityAggregateRepo(
+class ActivityAggregateService(
 	val activityAggregate: ActivityAggregate,
 	val cleaningObject: CleaningObject,
 ) {
@@ -13,12 +13,12 @@ class ActivityAggregateRepo(
 		val todoList = mutableListOf<Todo>()
 
 		for (activity in activityAggregate.activityList) {
-			val todoRepo = TodoRepo(activity)
-			todoList.addAll(todoRepo.getTodos())
+			val todoService = TodoService(activity)
+			todoList.addAll(todoService.getTodos())
 		}
 
-		val todoService = TodoService(cleaningObject.address)
-		val savedTodoList = todoService.readTodoList(activityAggregate.activityType)
+		val todoRepo = TodoRepo(cleaningObject.address)
+		val savedTodoList = todoRepo.readTodoList(activityAggregate.activityType)
 
 		for (savedTodo in savedTodoList) {
 			if (!todoList.contains(savedTodo)) {
@@ -39,7 +39,7 @@ class ActivityAggregateRepo(
 		todoList.add(firstNotOverdueTodo)
 
 
-		todoService.saveTodoList(todoList)
+		todoRepo.saveTodoList(todoList)
 
 		return todoList
 	}

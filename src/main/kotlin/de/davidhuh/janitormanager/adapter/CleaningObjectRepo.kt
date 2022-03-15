@@ -1,6 +1,7 @@
-package de.davidhuh.janitormanager.adapter.service
+package de.davidhuh.janitormanager.adapter
 
-import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
+import de.davidhuh.janitormanager.application.ActivityAggregateService
+import de.davidhuh.janitormanager.application.HelperService
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.CleaningObjectManagement
 import de.davidhuh.janitormanager.domain.entity.Todo
@@ -11,7 +12,7 @@ import kotlinx.serialization.json.Json
 import java.io.File
 import java.io.IOException
 
-class CleaningObjectService() {
+class CleaningObjectRepo() {
 	private fun makeDirectories(path: String) {
 		if (!File(path).exists()) {
 			File(path).mkdirs()
@@ -53,18 +54,18 @@ class CleaningObjectService() {
 		val todoListsToSave = mutableListOf<MutableList<Todo>>()
 
 		cleaningObject.activityAggregateList.forEach() {
-			val activityAggreagteRepo = ActivityAggregateRepo(it, cleaningObject)
-			val todoList = activityAggreagteRepo.getAllTodos()
+			val activityAggregateService = ActivityAggregateService(it, cleaningObject)
+			val todoList = activityAggregateService.getAllTodos()
 			todoListsToSave.add(todoList)
 		}
 
 		cleaningObject.changeAddress(newAddress)
 		saveCleaningObjectList(cleaningObjectList)
 
-		val todoService = TodoService(newAddress)
+		val todoRepo = TodoRepo(newAddress)
 
 		for (todoListToSave in todoListsToSave) {
-			todoService.changeAddressOfTodoList(oldAddress, todoListToSave)
+			todoRepo.changeAddressOfTodoList(oldAddress, todoListToSave)
 		}
 	}
 

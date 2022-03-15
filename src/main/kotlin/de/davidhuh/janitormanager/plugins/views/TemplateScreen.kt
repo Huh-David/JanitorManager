@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.application.views
+package de.davidhuh.janitormanager.plugins.views
 
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.layout.*

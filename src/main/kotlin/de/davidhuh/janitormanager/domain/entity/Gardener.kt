@@ -1,13 +1,13 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.Serializer
+import de.davidhuh.janitormanager.domain.serializer.UUIDSerializer
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import java.util.*
 
 @Serializable
 class Gardener(
-	@Serializable(with = Serializer.UUIDSerializer::class)
+	@Serializable(with = UUIDSerializer::class)
 	override val employeeId: UUID,
 	override val preName: String,
 	override val surName: String,

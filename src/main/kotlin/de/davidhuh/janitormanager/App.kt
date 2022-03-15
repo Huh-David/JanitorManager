@@ -14,11 +14,11 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import de.davidhuh.janitormanager.adapter.service.CleaningObjectService
 import de.davidhuh.janitormanager.adapter.service.MockDataService
-import de.davidhuh.janitormanager.application.navcontroller.NavController
-import de.davidhuh.janitormanager.application.navcontroller.NavigationHost
-import de.davidhuh.janitormanager.application.navcontroller.composable
-import de.davidhuh.janitormanager.application.navcontroller.rememberNavController
-import de.davidhuh.janitormanager.application.views.*
+import de.davidhuh.janitormanager.plugins.navcontroller.NavController
+import de.davidhuh.janitormanager.plugins.navcontroller.NavigationHost
+import de.davidhuh.janitormanager.plugins.navcontroller.composable
+import de.davidhuh.janitormanager.plugins.navcontroller.rememberNavController
+import de.davidhuh.janitormanager.plugins.views.*
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 
 

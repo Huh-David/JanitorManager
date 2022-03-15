@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.application.views
+package de.davidhuh.janitormanager.plugins.views
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
 import de.davidhuh.janitormanager.adapter.service.TodoService
-import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.plugins.navcontroller.NavController
 import de.davidhuh.janitormanager.domain.entity.Todo
 
 @Composable

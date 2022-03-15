@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.application.navcontroller
+package de.davidhuh.janitormanager.plugins.navcontroller
 
 import androidx.compose.runtime.Composable
 

@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.application.cards
+package de.davidhuh.janitormanager.plugins.cards
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -9,8 +9,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import de.davidhuh.janitormanager.application.navcontroller.NavController
-import de.davidhuh.janitormanager.application.views.Screen
+import de.davidhuh.janitormanager.plugins.navcontroller.NavController
+import de.davidhuh.janitormanager.plugins.views.Screen
 
 @Composable
 fun cleaningObjectCard(

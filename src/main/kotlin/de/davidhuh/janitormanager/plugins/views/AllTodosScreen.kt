@@ -1,4 +1,4 @@
-package de.davidhuh.janitormanager.application.views
+package de.davidhuh.janitormanager.plugins.views
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import de.davidhuh.janitormanager.adapter.repository.ActivityAggregateRepo
 import de.davidhuh.janitormanager.adapter.service.TodoService
-import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.plugins.navcontroller.NavController
 import de.davidhuh.janitormanager.domain.entity.CleaningObject
 import de.davidhuh.janitormanager.domain.entity.Todo
 

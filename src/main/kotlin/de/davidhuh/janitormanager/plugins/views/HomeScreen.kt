@@ -1,9 +1,9 @@
-package de.davidhuh.janitormanager.application.views
+package de.davidhuh.janitormanager.plugins.views
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import de.davidhuh.janitormanager.application.cards.cleaningObjectCard
-import de.davidhuh.janitormanager.application.navcontroller.NavController
+import de.davidhuh.janitormanager.plugins.cards.cleaningObjectCard
+import de.davidhuh.janitormanager.plugins.navcontroller.NavController
 
 @Composable
 fun homeScreen(

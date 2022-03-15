@@ -1,6 +1,7 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.valueobject.Address
+import de.davidhuh.janitormanager.domain.entity.cleaningobjectmanagement.CleaningObjectManagement
+import de.davidhuh.janitormanager.domain.valueobject.address.Address
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

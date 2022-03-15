@@ -12,27 +12,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import de.davidhuh.janitormanager.adapter.CleaningObjectRepo
+import de.davidhuh.janitormanager.plugins.persistence.cleaningobject.CleaningObjectPersistenceRepo
 import de.davidhuh.janitormanager.application.MockDataService
-import de.davidhuh.janitormanager.plugins.navcontroller.NavController
-import de.davidhuh.janitormanager.plugins.navcontroller.NavigationHost
-import de.davidhuh.janitormanager.plugins.navcontroller.composable
-import de.davidhuh.janitormanager.plugins.navcontroller.rememberNavController
-import de.davidhuh.janitormanager.plugins.views.*
-import de.davidhuh.janitormanager.domain.entity.CleaningObject
+import de.davidhuh.janitormanager.plugins.ui.navcontroller.NavController
+import de.davidhuh.janitormanager.plugins.ui.navcontroller.NavigationHost
+import de.davidhuh.janitormanager.plugins.ui.navcontroller.composable
+import de.davidhuh.janitormanager.plugins.ui.navcontroller.rememberNavController
+import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObject
+import de.davidhuh.janitormanager.plugins.ui.views.*
 
 
 @Composable
 @Preview
 fun app() {
-	val cleaningObjectRepo = CleaningObjectRepo()
+	val cleaningObjectPersistenceRepo = CleaningObjectPersistenceRepo()
 
-	if (!cleaningObjectRepo.checkIfCleaningObjectsExist()) {
+	if (!cleaningObjectPersistenceRepo.checkIfCleaningObjectsExist()) {
 		val mockDataService = MockDataService()
-		cleaningObjectRepo.saveCleaningObjectList(mockDataService.generateCleaningObjects(amount = 4))
+		cleaningObjectPersistenceRepo.saveCleaningObjectList(mockDataService.generateCleaningObjects(amount = 4))
 	}
 
-	val cleaningObjectList = cleaningObjectRepo.readCleaningObjectList().sortedBy {
+	val cleaningObjectList = cleaningObjectPersistenceRepo.readCleaningObjectList().sortedBy {
 		it.address.toSortString()
 	} as MutableList<CleaningObject>
 

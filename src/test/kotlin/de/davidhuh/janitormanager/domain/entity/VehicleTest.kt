@@ -1,5 +1,8 @@
 package de.davidhuh.janitormanager.domain.entity
 
+import de.davidhuh.janitormanager.domain.entity.employee.CleaningSpecialist
+import de.davidhuh.janitormanager.domain.entity.employee.Gardener
+import de.davidhuh.janitormanager.domain.entity.vehicle.Vehicle
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

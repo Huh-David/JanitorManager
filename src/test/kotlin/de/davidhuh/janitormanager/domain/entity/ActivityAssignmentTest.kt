@@ -1,6 +1,9 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.valueobject.Address
+import de.davidhuh.janitormanager.domain.entity.activityassignment.ActivityAssignment
+import de.davidhuh.janitormanager.domain.entity.employee.CleaningSpecialist
+import de.davidhuh.janitormanager.domain.entity.employee.Gardener
+import de.davidhuh.janitormanager.domain.valueobject.address.Address
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals

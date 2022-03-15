@@ -1,11 +1,16 @@
 package de.davidhuh.janitormanager.application
 
-import de.davidhuh.janitormanager.domain.entity.*
-import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
-import de.davidhuh.janitormanager.domain.valueobject.ActivityType
-import de.davidhuh.janitormanager.domain.valueobject.Address
-import de.davidhuh.janitormanager.domain.valueobject.CleaningObjectType
-import de.davidhuh.janitormanager.domain.valueobject.Sector
+import de.davidhuh.janitormanager.domain.entity.activity.Activity
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityAggregate
+import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObject
+import de.davidhuh.janitormanager.domain.entity.cleaningobjectmanagement.CleaningObjectManagement
+import de.davidhuh.janitormanager.domain.entity.employee.CleaningSpecialist
+import de.davidhuh.janitormanager.domain.entity.employee.Employee
+import de.davidhuh.janitormanager.domain.entity.employee.Gardener
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityType
+import de.davidhuh.janitormanager.domain.valueobject.address.Address
+import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObjectType
+import de.davidhuh.janitormanager.domain.valueobject.sector.Sector
 import kotlinx.datetime.LocalDate
 import java.util.*
 import kotlin.random.Random

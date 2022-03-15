@@ -1,7 +1,11 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.valueobject.ActivityType
-import de.davidhuh.janitormanager.domain.valueobject.Sector
+import de.davidhuh.janitormanager.domain.entity.activity.Activity
+import de.davidhuh.janitormanager.domain.entity.activityassignment.ActivityAssignment
+import de.davidhuh.janitormanager.domain.entity.employee.Gardener
+import de.davidhuh.janitormanager.domain.entity.todo.Todo
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityType
+import de.davidhuh.janitormanager.domain.valueobject.sector.Sector
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
 import java.util.*

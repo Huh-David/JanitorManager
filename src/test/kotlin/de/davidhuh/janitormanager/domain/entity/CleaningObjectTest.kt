@@ -1,7 +1,16 @@
 package de.davidhuh.janitormanager.domain.entity
 
-import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
-import de.davidhuh.janitormanager.domain.valueobject.*
+import de.davidhuh.janitormanager.domain.entity.activity.Activity
+import de.davidhuh.janitormanager.domain.entity.activityassignment.ActivityAssignment
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityAggregate
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityType
+import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObject
+import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObjectType
+import de.davidhuh.janitormanager.domain.entity.cleaningobjectmanagement.CleaningObjectManagement
+import de.davidhuh.janitormanager.domain.entity.employee.Gardener
+import de.davidhuh.janitormanager.domain.valueobject.address.Address
+import de.davidhuh.janitormanager.domain.valueobject.sector.Sector
+import de.davidhuh.janitormanager.domain.valueobject.space.Space
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

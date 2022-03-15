@@ -1,12 +1,12 @@
 package de.davidhuh.janitormanager.adapter
 
-import de.davidhuh.janitormanager.application.EmployeeService
-import de.davidhuh.janitormanager.domain.entity.Activity
-import de.davidhuh.janitormanager.domain.entity.ActivityAssignment
-import de.davidhuh.janitormanager.domain.entity.Gardener
-import de.davidhuh.janitormanager.domain.entity.aggregate.ActivityAggregate
-import de.davidhuh.janitormanager.domain.valueobject.ActivityType
-import de.davidhuh.janitormanager.domain.valueobject.Sector
+import de.davidhuh.janitormanager.application.employee.EmployeeService
+import de.davidhuh.janitormanager.domain.entity.activity.Activity
+import de.davidhuh.janitormanager.domain.entity.activityassignment.ActivityAssignment
+import de.davidhuh.janitormanager.domain.entity.employee.Gardener
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityAggregate
+import de.davidhuh.janitormanager.domain.entity.activity.ActivityType
+import de.davidhuh.janitormanager.domain.valueobject.sector.Sector
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

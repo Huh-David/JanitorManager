@@ -18,7 +18,7 @@ data class Activity(
 	private fun createTodoList(): MutableList<Todo> {
 		val today = LocalDate(
 			Calendar.getInstance().get(Calendar.YEAR),
-			Calendar.getInstance().get(Calendar.MONTH + 1),
+			Calendar.getInstance().get(Calendar.MONTH) + 1,
 			Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 		)
 		var todoDay = this.startDate

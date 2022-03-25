@@ -23,11 +23,11 @@ fun todoOverviewScreen(
 	navController: NavController,
 ) {
 	templateScreen {
-		val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
+		val cleaningObject = navController.navSingleton.cleaningObjectList[navController.navSingleton.cleaningObjectIndex]
 
-		Text("[${navController.cleaningObjectIndex}] $cleaningObject")
+		Text("[${navController.navSingleton.cleaningObjectIndex}] $cleaningObject")
 		Column() {
-			val activityIndex = navController.activityIndex
+			val activityIndex = navController.navSingleton.activityIndex
 			val activityAggregateService =
 				ActivityAggregateService(cleaningObject.activityAggregateList[activityIndex], cleaningObject)
 			val todoPersistenceRepo = TodoPersistenceRepo(cleaningObject.address)

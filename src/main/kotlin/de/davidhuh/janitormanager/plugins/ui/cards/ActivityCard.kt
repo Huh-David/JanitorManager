@@ -70,7 +70,7 @@ fun activityRepoCard(
 	index: Int,
 	navController: NavController,
 ) {
-	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
+	val cleaningObject = navController.navSingleton.cleaningObjectList[navController.navSingleton.cleaningObjectIndex]
 	val activityAggregateService = ActivityAggregateService(activityAggregate, cleaningObject)
 	val todoPersistenceRepo = TodoPersistenceRepo(cleaningObject.address)
 	val todoList = activityAggregateService.getAllTodos(todoPersistenceRepo)
@@ -86,7 +86,7 @@ fun activityRepoCard(
 		},
 		"Todo Overview",
 		onClick2 = {
-			navController.activityIndex = index
+			navController.navSingleton.activityIndex = index
 			navController.navigate(Screen.TodoOverviewScreen.name)
 		},
 	)

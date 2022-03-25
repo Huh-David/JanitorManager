@@ -80,7 +80,7 @@ fun allTodosScreen(
 		Text("All remaining Todos")
 		val todoIndexMap = remember { mutableMapOf<Todo, Pair<CleaningObject, Int>>() }
 
-		navController.cleaningObjectList.forEachIndexed { index, cleaningObject ->
+		navController.navSingleton.cleaningObjectList.forEachIndexed { index, cleaningObject ->
 			for (activityAggregate in cleaningObject.activityAggregateList) {
 				val activityAggregateService = ActivityAggregateService(activityAggregate, cleaningObject)
 				val todoPersistenceRepo = TodoPersistenceRepo(cleaningObject.address)
@@ -108,7 +108,7 @@ fun allTodosScreen(
 				text2 = activityText.value,
 				text3 = todoText.value,
 				onClick1 = {
-					navController.cleaningObjectIndex = cleaningObjectIndexPair.second
+					navController.navSingleton.cleaningObjectIndex = cleaningObjectIndexPair.second
 					navController.navigate(Screen.CleaningObjectScreen.name)
 				},
 				onClick2 = {

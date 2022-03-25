@@ -9,10 +9,9 @@ import de.davidhuh.janitormanager.domain.entity.cleaningobject.CleaningObject
 class NavController(
 	private val startDestination: String,
 	private var backStackScreens: MutableSet<String> = mutableSetOf(),
-	var cleaningObjectIndex: Int,
-	var cleaningObjectList: MutableList<CleaningObject>,
-	var activityIndex: Int,
+	cleaningObjectList: MutableList<CleaningObject>,
 ) {
+	var navSingleton = NavSingleton(cleaningObjectList = cleaningObjectList)
 	var currentScreen: MutableState<String> = mutableStateOf(startDestination)
 
 	fun navigate(route: String) {
@@ -47,5 +46,5 @@ fun rememberNavController(
 	cleaningObjectList: MutableList<CleaningObject>,
 
 	): MutableState<NavController> = rememberSaveable {
-	mutableStateOf(NavController(startDestination, backStackScreens, 0, cleaningObjectList, 0))
+	mutableStateOf(NavController(startDestination, backStackScreens, cleaningObjectList))
 }

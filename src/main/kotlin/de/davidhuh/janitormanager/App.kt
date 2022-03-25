@@ -37,7 +37,11 @@ fun app() {
 	} as MutableList<CleaningObject>
 
 	val screens = Screen.values().toList()
-	val navController by rememberNavController(Screen.HomeScreen.name, mutableSetOf(), cleaningObjectList)
+	val navController by rememberNavController(
+		Screen.HomeScreen.name,
+		mutableSetOf(),
+		cleaningObjectList
+	)
 	val currentScreen by remember { navController.currentScreen }
 
 	MaterialTheme {

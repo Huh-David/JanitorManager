@@ -28,7 +28,7 @@ fun generateAddressChangeFields(
 	navController: NavController,
 	modifier: Modifier = Modifier,
 ) {
-	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
+	val cleaningObject = navController.navSingleton.cleaningObjectList[navController.navSingleton.cleaningObjectIndex]
 
 	val valuesToChange = mapOf<String, MutableState<String>>(
 		Pair("City", remember { mutableStateOf(cleaningObject.address.city) }),
@@ -68,7 +68,7 @@ fun generateAddressChangeFields(
 				val cleaningObjectPersistenceRepo = CleaningObjectPersistenceRepo()
 
 				cleaningObjectPersistenceRepo.changeAddressOfCleaningObject(
-					navController.cleaningObjectList,
+					navController.navSingleton.cleaningObjectList,
 					cleaningObject,
 					newAddress
 				)
@@ -84,7 +84,7 @@ fun generateCleaningObjectManagementChangeFields(
 	navController: NavController,
 	modifier: Modifier = Modifier,
 ) {
-	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
+	val cleaningObject = navController.navSingleton.cleaningObjectList[navController.navSingleton.cleaningObjectIndex]
 
 	val valuesToChange = mapOf<String, MutableState<String>>(
 		Pair("First Name", remember { mutableStateOf(cleaningObject.cleaningObjectManagement.firstName) }),
@@ -135,7 +135,7 @@ fun generateCleaningObjectManagementChangeFields(
 				val cleaningObjectPersistenceRepo = CleaningObjectPersistenceRepo()
 
 				cleaningObjectPersistenceRepo.changeCleaningObjectManagementOfCleaningObject(
-					navController.cleaningObjectList,
+					navController.navSingleton.cleaningObjectList,
 					cleaningObject,
 					newCleaningObjectManagement
 				)

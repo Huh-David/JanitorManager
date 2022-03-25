@@ -28,11 +28,11 @@ fun generateActivityList(cleaningObject: CleaningObject, navController: NavContr
 fun cleaningObjectScreen(
 	navController: NavController,
 ) {
-	val cleaningObject = navController.cleaningObjectList[navController.cleaningObjectIndex]
+	val cleaningObject = navController.navSingleton.cleaningObjectList[navController.navSingleton.cleaningObjectIndex]
 
 	templateScreen {
 		Text(
-			"[${navController.cleaningObjectIndex}] $cleaningObject",
+			"[${navController.navSingleton.cleaningObjectIndex}] $cleaningObject",
 			modifier = Modifier.padding(4.dp)
 		)
 

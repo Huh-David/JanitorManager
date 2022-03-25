@@ -17,14 +17,14 @@ fun cleaningObjectCard(
 	cleaningObjectIndex: Int,
 	navController: NavController,
 ) {
-	val cleaningObject = navController.cleaningObjectList[cleaningObjectIndex]
+	val cleaningObject = navController.navSingleton.cleaningObjectList[cleaningObjectIndex]
 
 	OutlinedButton(
 		modifier = Modifier
 			.fillMaxWidth()
 			.padding(horizontal = 10.dp),
 		onClick = {
-			navController.cleaningObjectIndex = cleaningObjectIndex
+			navController.navSingleton.cleaningObjectIndex = cleaningObjectIndex
 			navController.navigate(Screen.CleaningObjectScreen.name)
 		}
 	) {

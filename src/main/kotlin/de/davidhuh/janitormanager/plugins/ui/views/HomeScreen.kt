@@ -13,7 +13,7 @@ fun homeScreen(
 	) {
 		Text("All Cleaning Objects")
 
-		navController.cleaningObjectList.forEachIndexed { index, _ ->
+		navController.navSingleton.cleaningObjectList.forEachIndexed { index, _ ->
 			cleaningObjectCard(
 				index,
 				navController

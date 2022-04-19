@@ -11,3 +11,5 @@ Folgende Schritte müssen ausgeführt werden, um das Projekt aufzusetzen.
 </ol>
   
 Weitere Informationen sind in der [Projektdokumentation](https://github.com/Huh-David/JanitorManager/blob/master/Projektdokumentation.pdf)  zu finden.
+
+Die gesetzten Ziele für den Programmentwurf sind in der aktuellen [Themeneinreichung](https://github.com/Huh-David/JanitorManager/blob/master/Themeneinreichung_Programmentwurf.pdf) zu finden.

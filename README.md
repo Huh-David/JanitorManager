@@ -10,4 +10,4 @@ Folgende Schritte müssen ausgeführt werden, um das Projekt aufzusetzen.
   <li>Im Gradle Fenster unter Tasks > verification > test ausführen, um Tests zu starten.</li>
 </ol>
   
-Weitere Informationen sind in der Projektdokumentation zu finden.
+Weitere Informationen sind in der [Projektdokumentation](https://github.com/Huh-David/JanitorManager/blob/master/Projektdokumentation.pdf)  zu finden.

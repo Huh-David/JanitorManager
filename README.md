@@ -9,7 +9,9 @@ Folgende Schritte müssen ausgeführt werden, um das Projekt aufzusetzen.
   <li>Im Gradle Fenster unter Tasks > compose desktop > run ausführen, um Programm zu starten.</li>
   <li>Im Gradle Fenster unter Tasks > verification > test ausführen, um Tests zu starten.</li>
 </ol>
-  
+
+## Programmbeschreibung
+
 Bei Programmstart werden alle bereits angelegten CleaningObjects (aktuell zufällig generierte Demo-Daten) in Form einer List angezeigt.
 ![Programmstart](imagesForReadme/Programmstart.jpg)
 
